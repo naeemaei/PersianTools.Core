@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Core", "PersianTools.Core\PersianTools.Core.csproj", "{0FB0ED9E-7A0E-4704-ACD2-B8E7E8394DBA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Test", "PersianTools.Test\PersianTools.Test.csproj", "{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FB0ED9E-7A0E-4704-ACD2-B8E7E8394DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB0ED9E-7A0E-4704-ACD2-B8E7E8394DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB0ED9E-7A0E-4704-ACD2-B8E7E8394DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB0ED9E-7A0E-4704-ACD2-B8E7E8394DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {085A68E1-413A-449F-ACF6-82A3877943F9}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://naeemaei.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PersianTools.Core\\PersianTools.Core.csproj
+		SccProjectName1 = PersianTools.Core
+		SccLocalPath1 = PersianTools.Core
+		SccProjectUniqueName2 = PersianTools.Test\\PersianTools.Test.csproj
+		SccProjectName2 = PersianTools.Test
+		SccLocalPath2 = PersianTools.Test
+	EndGlobalSection
+EndGlobal
