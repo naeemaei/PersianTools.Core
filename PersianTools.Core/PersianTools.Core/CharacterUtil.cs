@@ -88,12 +88,20 @@ namespace PersianTools.Core
             
             return result.Replace("  ", "");
         }
+        private static string GetNumDicValue(long key)
+        {
+            string TempValue;
+            return numDic.TryGetValue(key, out TempValue) ? TempValue : String.Empty;
+        }
         private static string ConvertToText(int id,long number)
         {
+            string TempValue = GetNumDicValue(number);
+
+
             if (number < ConList[ConList.Count-1].Level)
             {
                 //return ConvertOne(i);
-                return numDic.GetValueOrDefault(number);
+                return TempValue;
             }
             //long lev = number < 20+1 ? 10 : level;
             if (number < ConList[id ].Level)
@@ -103,12 +111,12 @@ namespace PersianTools.Core
             if(number<1000)
             {
                 return (ConvertToText(id + 1, Quotient(ConList[id].Number*number, ConList[id].Level))
-                + numDic.GetValueOrDefault(ConList[id].Level)
+                + GetNumDicValue(ConList[id].Level)
                 + Space(ConvertToText(id + 1, Remaining(number, ConList[id].Level)))
                 + ConvertToText(id + 1, Remaining(number, ConList[id].Level)));
             }
             return (ConvertToText(id + 1,Quotient(number, ConList[id].Level))
-                + numDic.GetValueOrDefault(ConList[id].Level)
+                + GetNumDicValue(ConList[id].Level)
                 + Space(ConvertToText(id + 1, Remaining(number, ConList[id].Level)))
                 + ConvertToText(id + 1, Remaining(number, ConList[id].Level)) );
         }
@@ -119,7 +127,7 @@ namespace PersianTools.Core
                 return ConvertHuge(i);
             }
             return (ConvertHuge(Quotient(i, 1000000000)) 
-                + numDic.GetValueOrDefault(1000000000) 
+                + GetNumDicValue(1000000000) 
                 + Space(ConvertHuge(Remaining(i, 1000000000))) 
                 + ConvertHuge(Remaining(i, 1000000000)) + " ريال").Replace("  ", "");
         }
@@ -130,7 +138,7 @@ namespace PersianTools.Core
                 return ConvertBiger(i);
             }
             return (ConvertBiger(Quotient(i, 1000000)) 
-                + numDic.GetValueOrDefault(1000000) 
+                + GetNumDicValue(1000000) 
                 + Space(ConvertBiger(Remaining(i, 1000000))) 
                 + ConvertBiger(Remaining(i, 1000000)));
         }
@@ -141,7 +149,7 @@ namespace PersianTools.Core
                 return ConvertBig(i);
             }
             return (ConvertLarge(Quotient(i, 1000)) 
-                + numDic.GetValueOrDefault(1000) 
+                + GetNumDicValue(1000) 
                 + Space(ConvertBig(Remaining(i, 1000))) 
                 + ConvertBig(Remaining(i, 1000)));
         }
@@ -152,7 +160,7 @@ namespace PersianTools.Core
                 return ConvertLarger(i);
             }
             return (ConvertLarger(Quotient(i, 1000)) 
-                + numDic.GetValueOrDefault(1000) 
+                + GetNumDicValue(1000) 
                 + Space(ConvertLarge(Remaining(i, 1000))) 
                 + ConvertLarge(Remaining(i, 1000)));
         }
@@ -163,7 +171,7 @@ namespace PersianTools.Core
                 return ConvertLarge(i);
             }
             return (ConvertLarge(Quotient(i, 1000)) 
-                + numDic.GetValueOrDefault(1000) 
+                + GetNumDicValue(1000) 
                 + Space(ConvertLarge(Remaining(i, 1000))) 
                 + ConvertLarge(Remaining(i, 1000)));
         }
@@ -174,7 +182,7 @@ namespace PersianTools.Core
                 return ConvertMedium(i);
             }
             return (//ConvertHundred(100 * Quotient(i, 100))
-                 numDic.GetValueOrDefault(100 * Quotient(i, 100))
+                 GetNumDicValue(100 * Quotient(i, 100))
                 + Space(ConvertMedium(Remaining(i, 100))) 
                 + ConvertMedium(Remaining(i, 100)));
         }
@@ -183,13 +191,13 @@ namespace PersianTools.Core
             if (i < 21)
             {
                 //return ConvertOne(i);
-                return numDic.GetValueOrDefault(i);
+                return GetNumDicValue(i);
             }
             //long num = 10 * Quotient(i, 10);
             return (//ConvertTen(num)
-                numDic.GetValueOrDefault(10 * Quotient(i, 10))
-                + Space(numDic.GetValueOrDefault(Remaining(i, 10))) 
-                + numDic.GetValueOrDefault(Remaining(i, 10)));
+                GetNumDicValue(10 * Quotient(i, 10))
+                + Space(GetNumDicValue(Remaining(i, 10))) 
+                + GetNumDicValue(Remaining(i, 10)));
         }
 
         

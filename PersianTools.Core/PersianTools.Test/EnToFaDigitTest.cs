@@ -13,9 +13,9 @@ namespace PersianTools.Test
         public void Test1()
         {
             int price = 11200000;
-            string FaPrice = PersianTools.Core.CharacterUtil.Convert2(price);
-            string FaPrice1 = PersianTools.Core.CharacterUtil.Convert(price);
-            Assert.True(FaPrice1 == FaPrice.Replace(" ", ""));
+            string FaPrice = "یازده میلیون و دویست هزار".Replace(" ", "");
+            string FaPrice1 = PersianTools.Core.CharacterUtil.Convert(price).Replace(" ", "");
+            Assert.Equal(FaPrice,FaPrice1);
         }
     }
 }
