@@ -130,6 +130,14 @@ namespace PersianTools.Test
         [Fact]
         public void MyTestMethod()
         {
+            var x=PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow);
+            var x1 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-10));
+            var x2 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-100));
+            var x3 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-365));
+            var x4 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(365));
+            var x5 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(10));
+            var x6 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(100));
+            var x7 = PersianDateTime.GetDiffrenceToNow(DateTime.Now);
             //var y7 = y6.AddWeeks(5);
             //var y8 = y7.AddYears(-5);
             //var y9 = y8.AddMonths(18);

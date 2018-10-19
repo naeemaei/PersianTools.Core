@@ -13,12 +13,13 @@ namespace PersianTools.Core
         private static CityUtil instance;
         private CityUtil()
         {
+
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "PersianTools.Core.Properties.Resources.resources";
             var x1 = this.GetType().Assembly.GetManifestResourceNames();
-            var m = Encoding.UTF8.GetString(PersianTools.Core.Properties.Resources.IranCities);
+            var m = Encoding.Unicode.GetString(PersianTools.Core.Properties.Resources.IranCities);
             var xx = JSONSerializer<List<CitiesModel>>.DeSerialize(m);
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName)) 
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))
             {
                 string result = reader.ReadToEnd();
@@ -30,7 +31,7 @@ namespace PersianTools.Core
             {
                 if (instance == null)
                 {
-                    instance= new CityUtil();
+                    instance = new CityUtil();
                 }
                 return instance;
             }
@@ -56,10 +57,12 @@ namespace PersianTools.Core
         /// </summary>
         public static TType DeSerialize(string json)
         {
-            DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings();
-            settings.IgnoreExtensionDataObject = true;
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            json = @"[{'name': 'آذربایجان شرقی','Cities': [{ 'name': 'سهند' }]}]";
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json));
+
             DataContractJsonSerializer dcjs = new DataContractJsonSerializer(typeof(TType));
+            ms.Position = 0;
+            var x = dcjs.ReadObject(ms);
             TType pd = (TType)dcjs.ReadObject(ms);
             return pd;
         }
@@ -90,8 +93,8 @@ namespace PersianTools.Core
     public class City
     {
         public int ProvinceId { get; set; }
-        public  int CityId { get; set; }
+        public int CityId { get; set; }
         public string CityName { get; set; }
-        public Province Province { get; set; } 
+        public Province Province { get; set; }
     }
 }
