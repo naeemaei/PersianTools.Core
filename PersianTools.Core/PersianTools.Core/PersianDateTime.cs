@@ -176,6 +176,52 @@ namespace PersianTools.Core
         {
             return new PersianDateTime(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime), 1);
         }
+        public static string GetDiffrenceToNow(DateTime dt)
+        {
+            var Current = DateTime.Now;
+            var ts = (Current - dt);
+            string opr = "پیش";
+            if (dt > DateTime.Now)
+            {
+                opr = "بعد";
+                ts = dt - Current;
+            }
+            if (ts.TotalMinutes < 1)
+                return "اکنون";
+            if (ts.TotalMinutes < 60)
+                return $"{ts.Minutes} دقیقه {opr}";
+            if(ts.TotalDays<1)
+            {
+                return $"{ts.Hours} ساعت و {ts.Minutes} دقیقه {opr}";
+            }
+            if(ts.TotalDays<30)
+            {
+                return $"{ts.Days} روز و {ts.Hours} ساعت و {ts.Minutes} دقیقه {opr}";
+            }
+            if(ts.TotalDays>30 && ts.TotalDays<365)
+            {
+                var months = Math.Floor(ts.TotalDays/30);
+                var days = Math.Floor(ts.TotalDays%30);
+                return (months>0? $"{months} ماه و ":String.Empty)+
+                    (days > 0 ? $"{days} روز و " : String.Empty) +
+                    (ts.Hours > 0 ? $"{ts.Hours} ساعت و " : String.Empty) +
+                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) +opr;
+            }
+            if (ts.TotalDays >= 365)
+            {
+                var year = Math.Floor(ts.TotalDays/365);
+                var months = Math.Floor(ts.TotalDays%365/30);
+                var days = Math.Floor(ts.TotalDays %365/ 30);
+                return (year > 0 ? $"{year} سال و " : String.Empty) +
+                    (months > 0 ? $"{months} ماه و " : String.Empty) +
+                    (days > 0 ? $"{days} روز و " : String.Empty) +
+                    (ts.Hours > 0 ? $"{ts.Hours} ساعت و " : String.Empty) +
+                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) +opr;
+            }
+            return "نامشخص";
+        }
+        public static string GetDiffrenceToNow(PersianDateTime dt) =>
+            GetDiffrenceToNow(dt.dateTime);
         public override string ToString()
         {
             return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
