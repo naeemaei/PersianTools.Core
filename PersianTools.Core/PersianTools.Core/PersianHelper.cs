@@ -10,7 +10,7 @@ namespace PersianTools.Core
     {
         private const string PersianDatePattern = @"^$|^([1][0-9]{3}[/\/]([0][1-6])[/\/]([0][1-9]|[12][0-9]|[3][01])|[1][0-9]{3}[/\/]([0][7-9]|[1][012])[/\/]([0][1-9]|[12][0-9]|(30)))$";
         const string MobPattern = @"^((\+9|\+989|\+\+989|9|09|989|0989|00989)(01|02|03|10|11|12|13|14|15|16|17|18|19|20|21|22|30|31|32|33|34|35|36|37|38|39|90))(\d{7})$";
-
+        private const string TimePattern = @"^((([0-1]?[0-9])|(2[0-3]):[0-5]?[0-9])|(([0-1]?[0-9])|(2[0-3]):[0-5]?[0-9]:[0-5]?[0-9]))$";
         /// <summary>
         /// https://www.dotnettips.info/post/1097/
         /// </summary>
@@ -69,6 +69,9 @@ namespace PersianTools.Core
         {
             return Regex.IsMatch(persianDate.ToString(), PersianDatePattern);
         }
-
+        public static Boolean IsTimeValid(this string time)
+        {
+            return Regex.IsMatch(time, TimePattern);
+        }
     }
 }

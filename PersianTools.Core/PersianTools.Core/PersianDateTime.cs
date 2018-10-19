@@ -42,8 +42,7 @@ namespace PersianTools.Core
         internal const long MinTicks = 0;
         internal const long MaxTicks = DaysTo10000 * TicksPerDay - 1;
         private readonly static string[] dayOfWeek = new string[] { "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه", "شنبه" };
-        private readonly static string[] months = new string[] { "","فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
-        private const string PersianDatePattern = @"^$|^([1][0-9]{3}[/\/]([0][1-6])[/\/]([0][1-9]|[12][0-9]|[3][01])|[1][0-9]{3}[/\/]([0][7-9]|[1][012])[/\/]([0][1-9]|[12][0-9]|(30)))$";
+        private readonly static string[] months = new string[] { "", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
         public static string AM = "ق.ظ";
         public static string PM = "ب.ظ";
         // Number of days in a non-leap year
@@ -55,7 +54,7 @@ namespace PersianTools.Core
         public DateTime DateTime
         {
             get { return this.dateTime; }
-            private set { this.dateTime = value;}
+            private set { this.dateTime = value; }
         }
         //public PersianDateTime PersianDate { get; }
         public int Millisecond { get; }
@@ -92,31 +91,47 @@ namespace PersianTools.Core
             this.dateTime = persianCalendar.ToDateTime(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second, this.Millisecond);
         }
 
-        public PersianDateTime(string shamsiDate = "1380/01/01")
+        public PersianDateTime(string shamsiDate = "1380/01/01 23:32:56")
         {
             this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0;
-            shamsiDate = shamsiDate.Replace(" ", "");
-            if (!Regex.IsMatch(shamsiDate, PersianDatePattern))
+            //shamsiDate = shamsiDate.Replace(" ", "");
+            if (!PersianHelper.IsPersianDateValid(shamsiDate.Replace(" ", "").Substring(0, 10)))
             {
-                throw new ArgumentException("فرمت تاریخ وارد شده صحیح نمی باشد");
+                throw new ArgumentOutOfRangeException("فرمت تاریخ وارد شده صحیح نمی باشد");
             }
+            if (shamsiDate.Length > 10)
+                if (PersianHelper.IsTimeValid(shamsiDate.Substring(11, shamsiDate.Length - 11)))
+                {
+                    int h = 0, m = 0, s = 0;
+                    if (shamsiDate.Length > 11)
+                        int.TryParse(shamsiDate.Substring(11, 2), out h);
+                    if (shamsiDate.Length > 14)
+                        int.TryParse(shamsiDate.Substring(14, 2), out m);
+                    if (shamsiDate.Length > 17)
+                        int.TryParse(shamsiDate.Substring(17, 2), out s);
+                    this.Hour = h;
+                    this.Minute = m;
+                    this.Second = s;
+                }
             this.Year = Convert.ToInt32(shamsiDate.Substring(0, 4));
             this.Month = Convert.ToInt32(shamsiDate.Substring(5, 2));
             this.Day = Convert.ToInt32(shamsiDate.Substring(8, 2));
             this.dateTime = persianCalendar.ToDateTime(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second, this.Millisecond);
         }
+
         public PersianDateTime(DateTime dateTime)
         {
             this.dateTime = dateTime;
             this.Year = persianCalendar.GetYear(dateTime);
             this.Month = persianCalendar.GetMonth(dateTime);
-            this.Day = persianCalendar.GetDayOfMonth(dateTime); 
-            this.Hour = persianCalendar.GetHour(dateTime); 
-            this.Minute = persianCalendar.GetMinute(dateTime); 
-            this.Second = persianCalendar.GetSecond(dateTime); 
+            this.Day = persianCalendar.GetDayOfMonth(dateTime);
+            this.Hour = persianCalendar.GetHour(dateTime);
+            this.Minute = persianCalendar.GetMinute(dateTime);
+            this.Second = persianCalendar.GetSecond(dateTime);
             this.Millisecond = Convert.ToInt32(persianCalendar.GetMilliseconds(dateTime));
 
         }
+
         #endregion
         public static PersianDateTime Now { get { return new PersianDateTime(DateTime.Now); } }
         public static PersianDateTime Today { get { return new PersianDateTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0)); } }
@@ -127,7 +142,7 @@ namespace PersianTools.Core
         }
         public static PersianDateTime EndOfDay(DateTime dateTime)
         {
-            return new PersianDateTime(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59,999));
+            return new PersianDateTime(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999));
         }
         public static PersianDateTime StartOfDay(PersianDateTime persianDateTime)
         {
@@ -143,15 +158,15 @@ namespace PersianTools.Core
             => new PersianDateTime(year, 1, 1).dateTime;
         public static PersianDateTime EndOfYearPersianDateTime(int year)
         {
-            return new PersianDateTime(year+1, 1, 1).AddMilliseconds(-1);
+            return new PersianDateTime(year + 1, 1, 1).AddMilliseconds(-1);
         }
-        public static PersianDateTime EndDateOfMonth(int year,int month)
+        public static PersianDateTime EndDateOfMonth(int year, int month)
         {
-            return new PersianDateTime(year,month, persianCalendar.GetDaysInMonth(year,month),23,59,59,999);
+            return new PersianDateTime(year, month, persianCalendar.GetDaysInMonth(year, month), 23, 59, 59, 999);
         }
         public static PersianDateTime EndDateOfMonth(DateTime dateTime)
         {
-            return new PersianDateTime(persianCalendar.GetYear(dateTime),persianCalendar.GetMonth(dateTime),persianCalendar.GetDaysInMonth(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime)),23,59,59,999);
+            return new PersianDateTime(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime), persianCalendar.GetDaysInMonth(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime)), 23, 59, 59, 999);
         }
         public static PersianDateTime SrartDateOfMonth(int year, int month)
         {
@@ -159,7 +174,7 @@ namespace PersianTools.Core
         }
         public static PersianDateTime SrartDateOfMonth(DateTime dateTime)
         {
-            return new PersianDateTime(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime),1);
+            return new PersianDateTime(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime), 1);
         }
         public override string ToString()
         {
@@ -188,17 +203,26 @@ namespace PersianTools.Core
         public string ToLongStringYMD()
         {
             return $"{DayOfWeek} {CharacterUtil.Convert(this.Day)} {months[this.Month]} سال  {CharacterUtil.Convert(this.Year)}";
-        }/// <summary>
-        /// ساعت پانزده و سی دقیقه
+        }
+        /// <summary>
+        /// ساعت پانزده و سی دقیقه و ده ثانیه
         /// </summary>
         /// <returns></returns>
         public string ToLongStringHMS()
+        {
+            return $"ساعت {CharacterUtil.Convert(this.Hour)} و {CharacterUtil.Convert(this.Minute)} دقیقه و {CharacterUtil.Convert(this.Second)} ثانیه";
+        }
+        /// <summary>
+        /// ساعت پانزده و سی دقیقه
+        /// </summary>
+        /// <returns></returns>
+        public string ToLongStringHM()
         {
             return $"ساعت {CharacterUtil.Convert(this.Hour)} و {CharacterUtil.Convert(this.Minute)} دقیقه";
         }
         public bool Equals(PersianDateTime other)
         {
-            throw new NotImplementedException();
+            return this == other;
         }
 
         public TypeCode GetTypeCode()
@@ -206,7 +230,7 @@ namespace PersianTools.Core
             throw new NotImplementedException();
         }
 
-        
+
 
         public int CompareTo(PersianDateTime other)
         {
@@ -318,7 +342,7 @@ namespace PersianTools.Core
 
         public string ToString(IFormatProvider provider)
         {
-            throw new NotImplementedException();
+            return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
         }
 
         public object ToType(Type conversionType, IFormatProvider provider)
