@@ -10,8 +10,11 @@
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Test Version</Description>
-    <PackageTags>persian</PackageTags>
+    <Description></Description>
+    <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
+    <Version>1.0.1</Version>
+    <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
