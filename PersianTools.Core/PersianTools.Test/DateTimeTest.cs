@@ -43,28 +43,28 @@ namespace PersianTools.Test
         [Fact]
         public void CheckTwoConstructor2()
         {
-            PersianDateTime dt1 = new PersianDateTime("1399/12/29 23:30");
-            PersianDateTime dt2 = new PersianDateTime("1399/12/29 23:30:00");
+            var dt1 = new PersianDateTime("1399/12/29 23:30");
+            var dt2 = new PersianDateTime("1399/12/29 23:30:00");
             Assert.Equal(dt1, dt2);
         }
         [Fact]
         public void CheckTwoConstructor3()
         {
-            PersianDateTime dt1 = new PersianDateTime(1399,12,29,23,30,10);
-            PersianDateTime dt2 = new PersianDateTime("1399/12/29 23:30:10");
+            var dt1 = new PersianDateTime(1399,12,29,23,30,10);
+            var dt2 = new PersianDateTime("1399/12/29 23:30:10");
             Assert.Equal(dt1, dt2);
         }
         [Fact]
         public void CheckStartOfDay()
         {
-            PersianDateTime dt1 = PersianDateTime.StartOfDay( new PersianDateTime("1399/12/29 23:30:20"));
+            var dt1 = PersianDateTime.StartOfDay( new PersianDateTime("1399/12/29 23:30:20"));
             PersianDateTime dt2 = new PersianDateTime("1399/12/29 00:00:00");
             Assert.Equal(dt1, dt2);
         }
         [Fact]
         public void CheckEndOfDay()
         {
-            PersianDateTime dt1 = PersianDateTime.EndOfDay(new PersianDateTime("1399/12/29 23:30:20"));
+            var dt1 = PersianDateTime.EndOfDay(new PersianDateTime("1399/12/29 23:30:20"));
             PersianDateTime dt2 = new PersianDateTime(1399,12,29,23,59,59,999);
             Assert.Equal(dt1, dt2);
         }
