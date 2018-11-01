@@ -128,16 +128,41 @@ namespace PersianTools.Test
             Assert.Equal(time, d1);
         }
         [Fact]
+        public void CheckHoliDays()
+        {
+            var d1 = new PersianDateTime(1397, 3, 14);
+            var str=d1.GetDateData();
+            Assert.True(d1.IsHoliDay);
+            //var x2 = PersianDateTime.GetLongHoliDays(1398); 
+        }
+        [Fact]
+        public void CheckWorkingDays()
+        {
+            var d1 = new PersianDateTime(1397, 8, 1);
+            var d2 = new PersianDateTime(1397, 8, 30);
+            Assert.Equal(20,PersianDateTime.GetWorkingDays(d1,d2));
+        }
+        [Fact]
         public void MyTestMethod()
         {
+            var x3 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-1365));
+            var d1 = new PersianDateTime(1397, 1, 1);
+            string s="";
+            var dn = PersianDateTime.GenerateYearlyCalender(1375);
+            var item = d1.DateMetaDatas;
+            DateTime date = DateTime.Now;
+            var dt2 = new PersianDateTime("1399/11/29");
+            var y1 = PersianDateTime.GetHijriDate(dt2);
+            var y = PersianDateTime.GetHijriDate(DateTime.UtcNow);
             var x=PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow);
             var x1 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-10));
             var x2 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-100));
-            var x3 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-365));
+            //var x3 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-1365));
             var x4 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(365));
             var x5 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(10));
             var x6 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(100));
             var x7 = PersianDateTime.GetDiffrenceToNow(DateTime.Now);
+            var x9 = new PersianDateTime(1397, 1, 1);
             //var y7 = y6.AddWeeks(5);
             //var y8 = y7.AddYears(-5);
             //var y9 = y8.AddMonths(18);

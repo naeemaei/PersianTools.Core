@@ -10,20 +10,12 @@ namespace PersianTools.Core
 {
     public class CityUtil
     {
+        public List<CityModel> Cities;
         private static CityUtil instance;
         private CityUtil()
         {
-
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "PersianTools.Core.Properties.Resources.resources";
-            var x1 = this.GetType().Assembly.GetManifestResourceNames();
-            var m = Encoding.Unicode.GetString(PersianTools.Core.Properties.Resources.IranCities);
-            var xx = JSONSerializer<List<CitiesModel>>.DeSerialize(m);
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                string result = reader.ReadToEnd();
-            }
+            var m = Encoding.UTF8.GetString(PersianTools.Core.Properties.Resources.IranCities);
+            this.Cities = JSONSerializer<List<CityModel>>.DeSerialize(m);
         }
         public static CityUtil Instance
         {
@@ -57,39 +49,39 @@ namespace PersianTools.Core
         /// </summary>
         public static TType DeSerialize(string json)
         {
-            json = @"[{'name': 'آذربایجان شرقی','Cities': [{ 'name': 'سهند' }]}]";
-            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json));
-
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
             DataContractJsonSerializer dcjs = new DataContractJsonSerializer(typeof(TType));
             ms.Position = 0;
-            var x = dcjs.ReadObject(ms);
-            TType pd = (TType)dcjs.ReadObject(ms);
-            return pd;
+            var x = dcjs.ReadObject(ms) as TType;
+            ms.Close();
+            return x;
         }
     }
-    internal class ProvinceFake
-    {
-        public string name { get; set; }
-    }
     [DataContract]
-    internal class CityFake
+    public class JsonCity
     {
+
         [DataMember(Name = "name")]
-        public string name { get; set; }
+        public string Name { get; set; }
     }
+
     [DataContract]
-    internal class CitiesModel
+    public class CityModel
     {
+
         [DataMember(Name = "name")]
-        public string ProvinceName { get; set; }
+        public string Name { get; set; }
+
         [DataMember(Name = "Cities")]
-        public List<CityFake> Cities { get; set; }
+        public IList<JsonCity> Cities { get; set; }
     }
     public class Province
     {
         public int ProvinceId { get; set; }
         public string ProvinceName { get; set; }
+        public IList<City> Cities { get; set; }
     }
+
     public class City
     {
         public int ProvinceId { get; set; }

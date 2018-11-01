@@ -57,13 +57,13 @@ namespace PersianTools.Core
             private set { this.dateTime = value; }
         }
         //public PersianDateTime PersianDate { get; }
-        public int Millisecond { get; }
-        public int Second { get; }
-        public int Minute { get; }
-        public int Hour { get; }
-        public int Day { get; }
-        public int Month { get; }
-        public int Year { get; }
+        public int Millisecond { get; private set; }
+        public int Second { get; private set; }
+        public int Minute { get; private set; }
+        public int Hour { get; private set; }
+        public int Day { get; private set; }
+        public int Month { get; private set; }
+        public int Year { get; private set; }
         public string DayOfWeek
         {
             get
@@ -78,9 +78,14 @@ namespace PersianTools.Core
                 return this.dateTime.TimeOfDay;
             }
         }
+        public IEnumerable<DateMetaData> DateMetaDatas { get; private set; }
+        public HijriDate HijriDate { get; private set; }
+        public bool IsHoliDay { get; private set; }
         #region Constructor
         public PersianDateTime(int year, int month, int day, int hour = 0, int minute = 0, int second = 0, int millisecond = 0)
         {
+            this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0; this.HijriDate = new HijriDate();
+            this.DateMetaDatas = null; this.IsHoliDay = false; this.dateTime = DateTime.Now;
             this.Year = year;
             this.Month = month;
             this.Day = day;
@@ -89,11 +94,13 @@ namespace PersianTools.Core
             this.Second = second;
             this.Millisecond = millisecond;
             this.dateTime = persianCalendar.ToDateTime(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second, this.Millisecond);
+            this.CommonConstructor(this.dateTime);
         }
 
         public PersianDateTime(string shamsiDate = "1380/01/01 23:32:56")
         {
-            this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0;
+            this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0; this.HijriDate = new HijriDate();
+            this.DateMetaDatas = null; this.IsHoliDay = false; this.dateTime = DateTime.Now;
             //shamsiDate = shamsiDate.Replace(" ", "");
             if (!PersianHelper.IsPersianDateValid(shamsiDate.Replace(" ", "").Substring(0, 10)))
             {
@@ -116,10 +123,18 @@ namespace PersianTools.Core
             this.Year = Convert.ToInt32(shamsiDate.Substring(0, 4));
             this.Month = Convert.ToInt32(shamsiDate.Substring(5, 2));
             this.Day = Convert.ToInt32(shamsiDate.Substring(8, 2));
+
             this.dateTime = persianCalendar.ToDateTime(this.Year, this.Month, this.Day, this.Hour, this.Minute, this.Second, this.Millisecond);
+            this.CommonConstructor(this.dateTime);
         }
 
         public PersianDateTime(DateTime dateTime)
+        {
+            this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0; this.HijriDate = new HijriDate();
+            this.DateMetaDatas = null; this.IsHoliDay = false; this.dateTime = DateTime.Now;
+            this.CommonConstructor(dateTime);
+        }
+        private void CommonConstructor(DateTime dateTime)
         {
             this.dateTime = dateTime;
             this.Year = persianCalendar.GetYear(dateTime);
@@ -129,9 +144,17 @@ namespace PersianTools.Core
             this.Minute = persianCalendar.GetMinute(dateTime);
             this.Second = persianCalendar.GetSecond(dateTime);
             this.Millisecond = Convert.ToInt32(persianCalendar.GetMilliseconds(dateTime));
-
+            this.HijriDate = new HijriDate();
+            this.HijriDate.Year = hijri.GetYear(this.dateTime);
+            this.HijriDate.Month = hijri.GetMonth(this.dateTime);
+            this.HijriDate.Day = hijri.GetDayOfMonth(this.dateTime);
+            this.DateMetaDatas = HoliDaysData.Instance.GetMetaDataByDateTime(this.dateTime);
+            this.IsHoliDay = this.dateTime.DayOfWeek == System.DayOfWeek.Friday;
+            foreach (var item in DateMetaDatas)
+            {
+                this.IsHoliDay = this.IsHoliDay || item.IsHoliDay || this.dateTime.DayOfWeek == System.DayOfWeek.Friday;
+            }
         }
-
         #endregion
         public static PersianDateTime Now { get { return new PersianDateTime(DateTime.Now); } }
         public static PersianDateTime Today { get { return new PersianDateTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0)); } }
@@ -176,6 +199,10 @@ namespace PersianTools.Core
         {
             return new PersianDateTime(persianCalendar.GetYear(dateTime), persianCalendar.GetMonth(dateTime), 1);
         }
+        public static string GetDateData(DateTime dateTime)
+        {
+            return new PersianDateTime(dateTime).GetDateData();
+        }
         public static string GetDiffrenceToNow(DateTime dt)
         {
             var Current = DateTime.Now;
@@ -190,33 +217,33 @@ namespace PersianTools.Core
                 return "اکنون";
             if (ts.TotalMinutes < 60)
                 return $"{ts.Minutes} دقیقه {opr}";
-            if(ts.TotalDays<1)
+            if (ts.TotalDays < 1)
             {
                 return $"{ts.Hours} ساعت و {ts.Minutes} دقیقه {opr}";
             }
-            if(ts.TotalDays<30)
+            if (ts.TotalDays < 30)
             {
                 return $"{ts.Days} روز و {ts.Hours} ساعت و {ts.Minutes} دقیقه {opr}";
             }
-            if(ts.TotalDays>30 && ts.TotalDays<365)
+            if (ts.TotalDays > 30 && ts.TotalDays < 365)
             {
-                var months = Math.Floor(ts.TotalDays/30);
-                var days = Math.Floor(ts.TotalDays%30);
-                return (months>0? $"{months} ماه و ":String.Empty)+
+                var months = Math.Floor(ts.TotalDays / 30);
+                var days = Math.Floor(ts.TotalDays % 30);
+                return (months > 0 ? $"{months} ماه و " : String.Empty) +
                     (days > 0 ? $"{days} روز و " : String.Empty) +
                     (ts.Hours > 0 ? $"{ts.Hours} ساعت و " : String.Empty) +
-                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) +opr;
+                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) + opr;
             }
             if (ts.TotalDays >= 365)
             {
-                var year = Math.Floor(ts.TotalDays/365);
-                var months = Math.Floor(ts.TotalDays%365/30);
-                var days = Math.Floor(ts.TotalDays %365/ 30);
+                var year = Math.Floor(ts.TotalDays / 365);
+                var months = Math.Floor(ts.TotalDays % 365 / 30);
+                var days = Math.Floor(ts.TotalDays % 365 / 30);
                 return (year > 0 ? $"{year} سال و " : String.Empty) +
                     (months > 0 ? $"{months} ماه و " : String.Empty) +
                     (days > 0 ? $"{days} روز و " : String.Empty) +
                     (ts.Hours > 0 ? $"{ts.Hours} ساعت و " : String.Empty) +
-                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) +opr;
+                    (ts.Minutes > 0 ? $"{ts.Minutes} دقیقه " : String.Empty) + opr;
             }
             return "نامشخص";
         }
@@ -266,6 +293,18 @@ namespace PersianTools.Core
         {
             return $"ساعت {CharacterUtil.Convert(this.Hour)} و {CharacterUtil.Convert(this.Minute)} دقیقه";
         }
+
+        public string GetDateData()
+        {
+            StringBuilder Result = new StringBuilder();
+            Result.Append(" ");
+            foreach (var item in this.DateMetaDatas)
+            {
+
+                Result.Append($"{ item.Description} - ");
+            }
+            return Result.ToString().Remove(Result.ToString().Length - 1);
+        }
         public bool Equals(PersianDateTime other)
         {
             return this == other;
@@ -276,8 +315,14 @@ namespace PersianTools.Core
             throw new NotImplementedException();
         }
 
-
-
+        public static string GetHijriDate(PersianDateTime persianDate)
+        {
+            return GetHijriDate(persianDate.dateTime);
+        }
+        public static string GetHijriDate(DateTime theDate)
+        {
+            return $"{hijri.GetYear(theDate).ToString("00")}/{hijri.GetMonth(theDate).ToString("00")}/{hijri.GetDayOfMonth(theDate).ToString("00")}";
+        }
         public int CompareTo(PersianDateTime other)
         {
             throw new InvalidCastException("Invalid Cast From DateTime To Decimal");
@@ -413,6 +458,14 @@ namespace PersianTools.Core
         #endregion
 
         #region PersianDateTime Operator Override
+        public static PersianDateTime operator ++(PersianDateTime d)
+        {
+            return d.AddDays(1);
+        }
+        public static PersianDateTime operator --(PersianDateTime d)
+        {
+            return d.AddDays(-1);
+        }
         public static PersianDateTime operator +(PersianDateTime d, TimeSpan t)
         {
             long ticks = d.dateTime.Ticks;
@@ -471,5 +524,80 @@ namespace PersianTools.Core
 
         public static double DateDifference(PersianDateTime d1, PersianDateTime d2)
         => (d1.dateTime - d2.dateTime).TotalDays;
+        public static List<PersianDateTime> GenerateYearlyCalender(int year)
+        {
+            List<PersianDateTime> persianDateTimes = new List<PersianDateTime>();
+            var StartDate = StartOfYearPersianDateTime(year);
+            var EndDate = EndOfYearPersianDateTime(year);
+            while (StartDate < EndDate)
+            {
+                persianDateTimes.Add(StartDate++);
+            }
+            return persianDateTimes;
+        }
+        public static List<List<PersianDateTime>> GetLongHoliDays(int year)
+        {
+            List<PersianDateTime> yearData = GenerateYearlyCalender(year).FindAll(a => a.IsHoliDay || a.dateTime.DayOfWeek == System.DayOfWeek.Thursday);
+            List<List<PersianDateTime>> persianDateTimes = new List<List<PersianDateTime>>();
+            List<PersianDateTime> HoliDayList = new List<PersianDateTime>();
+            int cnt = 0;
+            for (int i = 0; i < yearData.Count; i++)
+            {
+                if (i != yearData.Count - 1 && DateDifference(yearData[i + 1], yearData[i]) == 1)
+                {
+                    HoliDayList.Add(yearData[i]);
+                    cnt++;
+                }
+                else if (cnt >= 2)
+                {
+                    HoliDayList.Add(yearData[i]);
+                    persianDateTimes.Add(HoliDayList);
+                    cnt = 0;
+                    HoliDayList = new List<PersianDateTime>();
+                }
+                else
+                {
+                    cnt = 0;
+                    HoliDayList = new List<PersianDateTime>();
+                }
+            }
+            return persianDateTimes;
+        }
+        public static int GetWorkingDays(DateTime d1, DateTime d2)
+        {
+            return GetWorkingDays(new PersianDateTime(d1), new PersianDateTime(d2));
+        }
+        public static int GetWorkingDays(PersianDateTime startDate, PersianDateTime endDate)
+        {
+            
+            if (startDate > endDate)
+            {
+                var tmp = startDate;
+                startDate = endDate;
+                endDate = tmp;
+            }
+            int Result = 0;
+            while (startDate <= endDate)
+            {
+                if (!startDate.IsHoliDay && startDate.DateTime.DayOfWeek != System.DayOfWeek.Thursday)
+                    Result++;
+                startDate++;
+            }
+            return Result;
+        }
+    }
+    
+    public class DateMetaData
+    {
+        public string Description { get; set; }
+        public CalenderType CalenderType { get; set; }
+        public DateType DateType { get; set; }
+        public bool IsHoliDay { get; set; }
+    }
+    public class HijriDate
+    {
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
     }
 }
