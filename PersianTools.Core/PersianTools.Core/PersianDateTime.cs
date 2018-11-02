@@ -293,7 +293,6 @@ namespace PersianTools.Core
         {
             return $"ساعت {CharacterUtil.Convert(this.Hour)} و {CharacterUtil.Convert(this.Minute)} دقیقه";
         }
-
         public string GetDateData()
         {
             StringBuilder Result = new StringBuilder();
@@ -309,12 +308,10 @@ namespace PersianTools.Core
         {
             return this == other;
         }
-
         public TypeCode GetTypeCode()
         {
             throw new NotImplementedException();
         }
-
         public static string GetHijriDate(PersianDateTime persianDate)
         {
             return GetHijriDate(persianDate.dateTime);
@@ -327,7 +324,6 @@ namespace PersianTools.Core
         {
             throw new InvalidCastException("Invalid Cast From DateTime To Decimal");
         }
-
         public int CompareTo(object obj)
         {
             throw new NotImplementedException();
@@ -435,7 +431,12 @@ namespace PersianTools.Core
         {
             return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
         }
-
+        public string ToString(string format)
+        {
+            DateTime dateTime = new DateTime(Year, Month, Day, Hour, Minute, Second,Millisecond,persianCalendar);
+            return dateTime.ToString(format, new System.Globalization.CultureInfo("fa-IR"));
+            //return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
+        }
         public object ToType(Type conversionType, IFormatProvider provider)
         {
             throw new InvalidCastException("Invalid Cast From DateTime To Decimal");
@@ -593,6 +594,20 @@ namespace PersianTools.Core
         public CalenderType CalenderType { get; set; }
         public DateType DateType { get; set; }
         public bool IsHoliDay { get; set; }
+        public string CalenderTypeDesc
+        {
+            get
+            {
+                return this.CalenderType.GetDescription();
+            }
+        }
+        public string DateTypeDesc
+        {
+            get
+            {
+                return this.DateType.GetDescription();
+            }
+        }
     }
     public class HijriDate
     {

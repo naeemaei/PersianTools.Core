@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -409,17 +410,26 @@ namespace PersianTools.Core
     }
     public enum CalenderType
     {
+        [Description("شمسی")]
         Jalali = 1,
+        [Description("قمری")]
         Hijri = 2,
+        [Description("میلادی")]
         Miladi = 3
     }
     public enum DateType
     {
+        [Description("روز عادی")]
         NormalDay = 1,
+        [Description("مناسبت")]
         Event = 2,
+        [Description("تعطیل رسمی")]
         HoliDay = 3,
+        [Description("مناسبت ملی")]
         NationalEvent = 4,
+        [Description("مناسبت بین المللی")]
         InternationalEvent = 5,
+        [Description("مناسبت مذهبی")]
         ReligiousEvent = 6
     }
 }
