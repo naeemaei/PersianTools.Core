@@ -146,7 +146,10 @@ namespace PersianTools.Test
         public void MyTestMethod()
         {
             var x3 = PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-1365));
-            var d1 = new PersianDateTime(1397, 2, 30);
+            var d1 = new PersianDateTime(1397, 5, 31);
+            var d2 = new PersianDateTime(1397, 6, 8);
+            var d3 = new PersianDateTime(1399, 6, 7);
+            var d4 = new PersianDateTime(1410, 10, 24);
             var str=d1.ToString("YYYY/mm/dd");
             d1 = new PersianDateTime(1397, 6, 31);
             str= d1.ToString("yyyy/MM/dd h:mm tt");
