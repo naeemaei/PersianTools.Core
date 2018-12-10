@@ -49,7 +49,7 @@ namespace PersianTools.Core
         private const int DaysPerYear = 365;
         #endregion
         private readonly static PersianCalendar persianCalendar = new PersianCalendar();
-        private readonly static HijriCalendar hijri = new HijriCalendar();
+        private readonly static HijriCalendar hijri = new HijriCalendar() { HijriAdjustment = -1 };
         private DateTime dateTime;
         public DateTime DateTime
         {
@@ -71,6 +71,14 @@ namespace PersianTools.Core
                 return dayOfWeek[this.dateTime.DayOfWeek.GetHashCode()];
             }
         }
+        public string MonthOfYear
+        {
+            get
+            {
+                return months[this .Month];
+            }
+        }
+
         public TimeSpan TimeOfDay
         {
             get
@@ -530,6 +538,17 @@ namespace PersianTools.Core
             List<PersianDateTime> persianDateTimes = new List<PersianDateTime>();
             var StartDate = StartOfYearPersianDateTime(year);
             var EndDate = EndOfYearPersianDateTime(year);
+            while (StartDate < EndDate)
+            {
+                persianDateTimes.Add(StartDate++);
+            }
+            return persianDateTimes;
+        }
+        public static List<PersianDateTime> GenerateMonthlyCalender(int year,int month)
+        {
+            List<PersianDateTime> persianDateTimes = new List<PersianDateTime>();
+            var StartDate = SrartDateOfMonth(year,month);
+            var EndDate = EndDateOfMonth(year, month);
             while (StartDate < EndDate)
             {
                 persianDateTimes.Add(StartDate++);

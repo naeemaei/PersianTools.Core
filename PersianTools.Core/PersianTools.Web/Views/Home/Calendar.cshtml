@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "تقویم شمسی";
+}
+@using PersianTools.Core
+@{PersianDateTime CurrentDateTime= (PersianDateTime)ViewBag.CurrentDate;}
+<link href="~/Content/Calendar.css" rel="stylesheet" />
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            پروژه تقویم شمسی
+        </h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <p><a target="_blank" href="https://www.nuget.org/packages/PersianTools.Core" class="btn btn-primary btn-lg">مشاهده در GitHub &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class="row">dsadsa</div>
+                <div class="row">
+
+                    <table class="calendar">
+                        <caption class="calendar__banner--month">
+                            <h1>@CurrentDateTime.MonthOfYear</h1>
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="calendar__day__header">شنبه</th>
+                                <th class="calendar__day__header">یکشنبه</th>
+                                <th class="calendar__day__header">دوشنبه</th>
+                                <th class="calendar__day__header">سه شنبه</th>
+                                <th class="calendar__day__header">چهارشنبه</th>
+                                <th class="calendar__day__header">پنجشنبه</th>
+                                <th class="calendar__day__header">جمعه</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td class="calendar__day__cell"></td>
+                                <td class="calendar__day__cell"></td>
+                                <td class="calendar__day__cell"></td>
+                                <td class="calendar__day__cell">1</td>
+                                <td class="calendar__day__cell">2</td>
+                                <td class="calendar__day__cell">3</td>
+                                <td class="calendar__day__cell">4</td>
+                            </tr>
+                            <tr>
+                                <td class="calendar__day__cell">5</td>
+                                <td class="calendar__day__cell">6</td>
+                                <td class="calendar__day__cell">7</td>
+                                <td class="calendar__day__cell">8</td>
+                                <td class="calendar__day__cell">9</td>
+                                <td class="calendar__day__cell">10</td>
+                                <td class="calendar__day__cell">11</td>
+                            </tr>
+                            <tr>
+                                <td class="calendar__day__cell">12</td>
+                                <td class="calendar__day__cell">13</td>
+                                <td class="calendar__day__cell">14</td>
+                                <td class="calendar__day__cell" data-moon-phase="New Moon">15</td>
+                                <td class="calendar__day__cell">16</td>
+                                <td class="calendar__day__cell">17</td>
+                                <td class="calendar__day__cell">18</td>
+                            </tr>
+                            <tr>
+                                <td class="calendar__day__cell">19</td>
+                                <td class="calendar__day__cell">20</td>
+                                <td class="calendar__day__cell">21</td>
+                                <td class="calendar__day__cell">22</td>
+                                <td class="calendar__day__cell">23</td>
+                                <td class="calendar__day__cell">24</td>
+                                <td class="calendar__day__cell">25</td>
+                            </tr>
+                            <tr>
+                                <td class="calendar__day__cell">26</td>
+                                <td class="calendar__day__cell">27</td>
+                                <td class="calendar__day__cell">28</td>
+                                <td class="calendar__day__cell" data-moon-phase="Full Moon">29</td>
+                                <td class="calendar__day__cell">30</td>
+                                <td class="calendar__day__cell" data-bank-holiday="Good Friday">31</td>
+                                <td class="calendar__day__cell"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

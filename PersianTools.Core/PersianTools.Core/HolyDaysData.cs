@@ -13,7 +13,7 @@ namespace PersianTools.Core
         private static HoliDaysData instance;
         public List<DaysData> daysData;
         private readonly static PersianCalendar persianCalendar = new PersianCalendar();
-        private readonly static HijriCalendar hijriCalendar = new HijriCalendar();
+        private readonly static HijriCalendar hijriCalendar = new HijriCalendar() { HijriAdjustment = -1 };
         private HoliDaysData()
         {
             LoadData();
