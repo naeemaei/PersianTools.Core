@@ -52,40 +52,41 @@
             </div>
             <div class="x_content">
                 <br />
-                
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="SelectedDate">
-                            انتخاب تاریخ
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="SelectedDate" required="required"
-                                   class="form-control col-md-7 col-xs-12">
+
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInput3">تاریخ</label>
+                    <div class="input-group">
+                        <div data-mdpersiandatetimepickershowing="false" title="" data-original-title="" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1393,&quot;Month&quot;:10,&quot;Day&quot;:10,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-enabletimepicker="false" data-mdpersiandatetimepicker="" style="cursor: pointer;" class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput3">
+                            <span class="glyphicon glyphicon-calendar"></span>
                         </div>
+                        <input data-mdpersiandatetimepickershowing="false" title="" data-original-title="" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1393,&quot;Month&quot;:10,&quot;Day&quot;:11,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-enabletimepicker="false" data-trigger="focus" data-mdpersiandatetimepicker="" class="form-control" id="SelectedDate" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" type="text">
                     </div>
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button id="GetDateDatabtn" type="submit" class="btn btn-success">مشاهده اطلاعات</button>
-                        </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button id="GetDateDatabtn" type="submit" class="btn btn-success">مشاهده اطلاعات</button>
                     </div>
-                <br/>
+                </div>
+                <br />
                 <div id="DateDataResult" class="row"></div>
- 
+
             </div>
         </div>
     </div>
 </div>
 @section scripts {
-    <script src="~/Scripts/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
     <script src="~/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <script src="~/Scripts/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
+
 
     <script>
         $('#SelectedDate').MdPersianDateTimePicker({
+            targetTextSelector: '#SelectedDate',
             Placement: 'bottom', // default is 'bottom'
             Trigger: 'focus', // default is 'focus',
-            EnableTimePicker: true, // default is true,
-            TargetSelector: '', // default is empty,
+            EnableTimePicker: false, // default is true,
+            TargetSelector: '#SelectedDate', // default is empty,
             GroupId: '', // default is empty,
             ToDate: false, // default is false,
             FromDate: false, // default is false,
