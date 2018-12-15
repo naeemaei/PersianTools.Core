@@ -21,7 +21,7 @@ Model Binders
 نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
 تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال</Description>
     <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Hamed Naeemaei</Authors>
@@ -147,6 +147,7 @@ persianDateTime.GetDateData();
 نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
 تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال</PackageReleaseNotes>
     <NeutralLanguage>fa</NeutralLanguage>
+    <AssemblyVersion>1.1.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
