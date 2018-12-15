@@ -316,7 +316,7 @@ namespace PersianTools.Web.Helper
         /// </summary>    
         /// <typeparam name="TModel">Type of model to render in the table.</typeparam>    
         /// <returns>Instance of a TableBuilder.</returns>    
-        public static ITableBuilder<TModel> TableFor<TModel>(this HtmlHelper helper) where TModel : class
+        public static ITableBuilder<TModel> TableFor<TModel>(this HtmlHelper helper) where TModel :  class
         {
             return new TableBuilder<TModel>(helper);
         }

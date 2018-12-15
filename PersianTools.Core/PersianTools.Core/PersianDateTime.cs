@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace PersianTools.Core
 {
-    public struct PersianDateTime : IComparable, IComparable<PersianDateTime>, IConvertible, IEquatable<PersianDateTime>, IFormattable
+    public class PersianDateTime : IComparable, IComparable<PersianDateTime>, IConvertible, IEquatable<PersianDateTime>, IFormattable
     {
         #region Fields
         public static readonly PersianDateTime MaxValue;
@@ -86,7 +86,7 @@ namespace PersianTools.Core
                 return this.dateTime.TimeOfDay;
             }
         }
-        public IEnumerable<DateMetaData> DateMetaDatas { get; private set; }
+        public IEnumerable<DateMetaData> DateMetaDatas { get; set; }
         public HijriDate HijriDate { get; private set; }
         public bool IsHoliDay { get; private set; }
         #region Constructor
