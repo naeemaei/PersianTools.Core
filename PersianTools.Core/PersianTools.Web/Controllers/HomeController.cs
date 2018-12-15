@@ -45,6 +45,12 @@ namespace PersianTools.Web.Controllers
             PersianDateTime persianDateTime = new PersianDateTime(thedate);
             return PartialView("_DateDataView", persianDateTime);
         }
+        public PartialViewResult HoliDayDataView(string theDate)
+        {
+            string thedate = CharacterUtil.ConvertToEnglishDigit(theDate);
+            //PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
+            return PartialView("_DateDataView", PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4))));
+        }
         //private List<PersianDateTime> GetMonthData(int year, int month)
         //{
         //    StringBuilder sb = new StringBuilder();
