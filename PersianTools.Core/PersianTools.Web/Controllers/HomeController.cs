@@ -41,7 +41,8 @@ namespace PersianTools.Web.Controllers
         [HttpGet]
         public PartialViewResult DateDataView(string theDate)
         {
-            PersianDateTime persianDateTime = new PersianDateTime(theDate);
+            string thedate = CharacterUtil.ConvertToEnglishDigit(theDate);
+            PersianDateTime persianDateTime = new PersianDateTime(thedate);
             return PartialView("_DateDataView", persianDateTime);
         }
         //private List<PersianDateTime> GetMonthData(int year, int month)
