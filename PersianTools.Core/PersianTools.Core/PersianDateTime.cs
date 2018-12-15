@@ -609,6 +609,7 @@ namespace PersianTools.Core
     
     public class DateMetaData
     {
+        public string Id { get; set; }
         public string Description { get; set; }
         public CalenderType CalenderType { get; set; }
         public DateType DateType { get; set; }
