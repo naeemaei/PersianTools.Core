@@ -352,7 +352,8 @@ namespace PersianTools.Core
                     Description = item.Description
                 ,
                     IsHoliDay = item.DateType == DateType.HoliDay
-                });
+                    ,Id=$"{ item.Year}-{ item.Month.ToString("00")}-{ item.Day.ToString("00")}"
+            });
             }
             return dateMetaDatas;
         }

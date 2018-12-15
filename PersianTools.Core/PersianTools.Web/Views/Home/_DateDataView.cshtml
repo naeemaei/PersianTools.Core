@@ -1,10 +1,11 @@
-﻿@model PersianTools.Core.PersianDateTime
+﻿@using PersianTools.Web.Helper
+@model PersianTools.Core.PersianDateTime
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                جدول راه‌راه
-                <small>زیر عنوان جدول راه‌راه</small>
+                لیست مناسبت های روز @Model.ToString("yyyy/MM/dd")
+                <small>@Model.ToLongStringYMD()</small>
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
@@ -29,32 +30,20 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
+            @(Html.TableFor
+                <PersianTools.Core.DateMetaData>()
+                .Columns(column =>
+                {
+                    column.Expression(p => p.Id).Title("تاریخ");
+                    column.Expression(p => p.DateTypeDesc).Title("نوع مناسبت");
+                    column.Expression(p => p.IsHoliDay).Title("تعطیل است؟");
+                    column.Expression(p => p.Description).Title("توضیحات");
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>نوع مناسبت</th>
-                        <th>تعطیل است یا خیر</th>
-                        <th>توضیحات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                        @foreach (var metaData in Model.DateMetaDatas)
-                        {
-                            <tr>
-                                <th scope="row">#</th>
-                                <td>@metaData.DateTypeDesc</td>
-                                <td>@metaData.IsHoliDay</td>
-                                <td>@metaData.Description</td>
-                            </tr>
-
-                        }
-                    
-                  
-                </tbody>
-            </table>
+                })
+                .DataSource(this.Model.DateMetaDatas)
+                .ToHtml("basicTable", "table table-striped table-responsive", "", "")
+            )
+            
 
         </div>
     </div>

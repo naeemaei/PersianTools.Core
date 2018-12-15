@@ -153,6 +153,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CustomHelper.cs" />
+    <Compile Include="Helper\HtmlTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3375,6 +3377,7 @@
     <Content Include="Views\Home\Calendar.cshtml" />
     <Content Include="Views\Home\PersianDateUtil.cshtml" />
     <Content Include="Views\Home\_DateDataView.cshtml" />
+    <Content Include="Views\Home\_BestHolidays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
