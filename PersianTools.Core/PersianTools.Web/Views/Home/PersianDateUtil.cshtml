@@ -75,6 +75,62 @@
         </div>
     </div>
 </div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    1
+                    <small>لیست تعطیلات پشت سرهم سال</small>
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">تنظیمات 1</a>
+                            </li>
+                            <li>
+                                <a href="#">تنظیمات 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInput3">تاریخ</label>
+                    <div class="input-group">
+                        <div data-mdpersiandatetimepickershowing="false" title="" data-original-title="" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1393,&quot;Month&quot;:10,&quot;Day&quot;:10,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-enabletimepicker="false" data-mdpersiandatetimepicker="" style="cursor: pointer;" class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#exampleInput3">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                        <input data-mdpersiandatetimepickershowing="false" title="" data-original-title="" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1393,&quot;Month&quot;:10,&quot;Day&quot;:11,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-enabletimepicker="false" data-trigger="focus" data-mdpersiandatetimepicker="" class="form-control" id="SelectedYear" placeholder="تاریخ" data-mddatetimepicker="true" data-placement="right" type="text">
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button id="GetHoliDaybtn" type="submit" class="btn btn-success">مشاهده اطلاعات</button>
+                    </div>
+                </div>
+                <br />
+                <div id="HoliDayResult" class="row"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
 @section scripts {
     <script src="~/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
     <script src="~/Scripts/MdBootstrapPersianDateTimePicker/jalaali.js"></script>
@@ -103,6 +159,25 @@
                     var msg = "Response failed with status: " + status + "</br>"
                         + " Error: " + error;
                     $('#DateDataResult').html(msg);
+                },
+                complete: function (xhr, status) {
+                    var doneMsg = "Operation complete with status: " + status;
+                    //alert(doneMsg);
+                }
+            });
+        });
+         $('#GetHoliDaybtn').click(function () {
+            var selDate = $('#SelectedYear').val();
+            $.ajax({
+                url: '/Home/HoliDayDataView/?theDate=' + selDate,
+                type: "GET",
+                success: function (data) {
+                    $('#HoliDayResult').html(data);
+                },
+                error: function (xhr, status, error) {
+                    var msg = "Response failed with status: " + status + "</br>"
+                        + " Error: " + error;
+                    $('#HoliDayResult').html(msg);
                 },
                 complete: function (xhr, status) {
                     var doneMsg = "Operation complete with status: " + status;
