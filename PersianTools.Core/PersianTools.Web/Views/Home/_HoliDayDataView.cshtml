@@ -1,4 +1,4 @@
-﻿@model PersianTools.Core.PersianDateTime
+﻿@model List<List<PersianTools.Core.PersianDateTime>>
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
@@ -40,19 +40,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                        @foreach (var metaData in Model.DateMetaDatas)
-                        {
-                            <tr>
-                                <th scope="row">#</th>
-                                <td>@metaData.DateTypeDesc</td>
-                                <td>@metaData.IsHoliDay</td>
-                                <td>@metaData.Description</td>
-                            </tr>
 
-                        }
-                    
-                  
+                    @foreach (var theDate in Model)
+                    {
+                        <tr>
+                            <th scope="row">#</th>
+                            <td>@metaData.DateTypeDesc</td>
+                            <td>@metaData.IsHoliDay</td>
+                            <td>@metaData.Description</td>
+                        </tr>
+
+                    }
+
+
                 </tbody>
             </table>
 
