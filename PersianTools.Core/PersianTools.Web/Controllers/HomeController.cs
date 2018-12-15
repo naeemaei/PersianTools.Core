@@ -49,7 +49,18 @@ namespace PersianTools.Web.Controllers
         {
             string thedate = CharacterUtil.ConvertToEnglishDigit(theDate);
             //PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
-            return PartialView("_DateDataView", PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4))));
+            var result = PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
+            foreach (var itemX in result)
+            {
+                foreach (var itemY in itemX)
+                {
+                    if(itemY.DateMetaDatas.Count(a=>a.IsHoliDay)==0)
+                    {
+                        itemY.DateMetaDatas= new List<DateMetaData> { (new DateMetaData { Id = itemY.ToString("yyyy-MM-dd"), IsHoliDay = true, CalenderType = CalenderType.Jalali, DateType = DateType.HoliDay, Description = "تعطیلی آخر هفته" }) };
+                    }
+                }
+            }
+            return PartialView("_BestHolidays", result);
         }
         //private List<PersianDateTime> GetMonthData(int year, int month)
         //{
