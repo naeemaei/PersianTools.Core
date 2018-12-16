@@ -78,7 +78,13 @@ namespace PersianTools.Core
                 return months[this .Month];
             }
         }
-
+        public string ShamsiDate
+        {
+            get
+            {
+                return this.ToString("yyyy/MM/dd");
+            }
+        }
         public TimeSpan TimeOfDay
         {
             get

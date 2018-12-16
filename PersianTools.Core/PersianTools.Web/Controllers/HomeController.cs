@@ -60,6 +60,11 @@ namespace PersianTools.Web.Controllers
                     }
                 }
             }
+            List<PersianDateTime> MainResult = new List<PersianDateTime>();
+            foreach (List< PersianDateTime> item in result)
+            {
+                MainResult.AddRange(item);
+            }
             return PartialView("_BestHolidays", result);
         }
         //private List<PersianDateTime> GetMonthData(int year, int month)
