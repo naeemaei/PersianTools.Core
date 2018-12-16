@@ -84,8 +84,15 @@ namespace PersianTools.Web.Helper
         /// <returns>Property value from the model.</returns>    
         public string Evaluate(TModel model)
         {
-            var result = this.CompiledExpression(model);
-            return result == null ? string.Empty : result.ToString();
+            try
+            {
+                var result = this.CompiledExpression(model);
+                return result == null ? string.Empty : result.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
         }
     }
 
@@ -291,7 +298,8 @@ namespace PersianTools.Web.Helper
                         var editPath = EditPath == string.Empty ? "#" : EditPath + ID;
                         var deletePath = DeletePath == string.Empty ? "#" : DeletePath + ID;
                         td.InnerHtml = "<a href='" + editPath + "' class='btn btn-primary'>ویرایش</a> <a href='" + deletePath + "'  class='btn btn-danger'>حذف</a>";
-                        tr.InnerHtml += td.ToString();
+                        if(editPath!="#" )
+                            tr.InnerHtml += td.ToString();
                         tbody.InnerHtml += tr.ToString();
                         row++;
                     }

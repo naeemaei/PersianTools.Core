@@ -1,5 +1,6 @@
 ﻿@using PersianTools.Web.Helper
 @model List<List<PersianTools.Core.PersianDateTime>>
+
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
@@ -30,27 +31,26 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            @{
-                foreach (var item in Model)
-                {
-                    var MainItem = item.FirstOrDefault(a => a.IsHoliDay);
-                    Html.TableFor
-                    <PersianTools.Core.PersianDateTime>
-                        ()
-                        .Columns(column =>
-                        {
-                            column.Expression(p => p.DateMetaDatas.FirstOrDefault(a => a.IsHoliDay).Id).Title("تاریخ");
-                            column.Expression(p => p.DateMetaDatas.FirstOrDefault(a => a.IsHoliDay).DateTypeDesc).Title("نوع مناسبت");
-                            column.Expression(p => p.DateMetaDatas.FirstOrDefault(a => a.IsHoliDay).IsHoliDay).Title("تعطیل است؟");
-                            column.Expression(p => p.DateMetaDatas.FirstOrDefault(a => a.IsHoliDay).Description).Title("توضیحات");
+            @foreach (var item in Model)
+            {
 
-                        })
-                        .DataSource(item)
-                        .ToHtml("basicTable", "table table-striped table-responsive", "", "");
-                }
+
+                @(Html.TableFor
+                                <PersianTools.Core.PersianDateTime>
+                                    ()
+                                    .Columns(column =>
+                                    {
+                                        column.Expression(p => p.ShamsiDate).Title("تاریخ");
+                                        column.Expression(p => p.ShamsiDate).Title("تاریخ");
+                                        column.Expression(p => p.DayOfWeek).Title("روز");
+                                        column.Expression(p => p.DateMetaDatas.FirstOrDefault(a => a.IsHoliDay).Description).Title("توضیحات");
+
+                                    })
+                                    .DataSource(item)
+                                    .ToHtml("basicTable", "table table-striped table-responsive", "", "")
+                )
+
             }
-
-
 
         </div>
     </div>
