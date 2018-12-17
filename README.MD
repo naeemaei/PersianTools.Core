@@ -1,8 +1,4 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+
 <div dir="rtl" style="font-family: tahoma;">
 <h1 style="color: #5e9ca0;"><span style="color: #000000;">ابزار Persian Tools</span></h1>
 
@@ -255,5 +251,3 @@
 	<li>تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال</li>
 </ol>
 </div>
-</body>
-</html>
