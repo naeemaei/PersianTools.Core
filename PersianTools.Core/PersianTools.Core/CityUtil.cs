@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -10,12 +11,20 @@ namespace PersianTools.Core
 {
     public class CityUtil
     {
-        public List<CityModel> Cities;
+        public List<Province> Provinces;
         private static CityUtil instance;
         private CityUtil()
         {
-            var m = Encoding.UTF8.GetString(PersianTools.Core.Properties.Resources.IranCities);
-            this.Cities = JSONSerializer<List<CityModel>>.DeSerialize(m);
+            string json;
+            var assembly = Assembly.GetExecutingAssembly();
+            var stream = assembly.GetManifestResourceStream(this.GetType(), "IranCities.json");
+            stream.Position = 0;
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                json = reader.ReadToEnd();
+            }
+            this.Provinces =Newtonsoft.Json.JsonConvert.DeserializeObject<List<Province>>(json);
+            FillCityCodes();
         }
         public static CityUtil Instance
         {
@@ -28,65 +37,35 @@ namespace PersianTools.Core
                 return instance;
             }
         }
-    }
-    public static class JSONSerializer<TType> where TType : class
-    {
-        /// <summary>
-        /// Serializes an object to JSON
-        /// </summary>
-        public static string Serialize(TType instance)
+        private void FillCityCodes()
         {
-            var serializer = new DataContractJsonSerializer(typeof(TType));
-            using (var stream = new MemoryStream())
+            int i = 0;
+            foreach (var item in this.Provinces)
             {
-                serializer.WriteObject(stream, instance);
-                return Encoding.UTF8.GetString(stream.ToArray());
+                item.ProvinceId  = Provinces.IndexOf(item)+1;
+                item.Cities.ForEach(a => a.ProvinceId = item.ProvinceId);
+                item.Cities.ForEach(a => a.Province = item);
+                item.Cities.ForEach(a => a.CityId = ++i);
             }
         }
-
-        /// <summary>
-        /// DeSerializes an object from JSON
-        /// </summary>
-        public static TType DeSerialize(string json)
-        {
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-            DataContractJsonSerializer dcjs = new DataContractJsonSerializer(typeof(TType));
-            ms.Position = 0;
-            var x = dcjs.ReadObject(ms) as TType;
-            ms.Close();
-            return x;
-        }
     }
     [DataContract]
-    public class JsonCity
-    {
-
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
-    }
-
-    [DataContract]
-    public class CityModel
-    {
-
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
-
-        [DataMember(Name = "Cities")]
-        public IList<JsonCity> Cities { get; set; }
-    }
     public class Province
     {
         public int ProvinceId { get; set; }
-        public string ProvinceName { get; set; }
-        public IList<City> Cities { get; set; }
+        [DataMember]
+        public string name { get; set; }
+        [DataMember]
+        public List<City> Cities { get; set; }
     }
-
+    [DataContract]
     public class City
     {
         public int ProvinceId { get; set; }
         public int CityId { get; set; }
-        public string CityName { get; set; }
+        [DataMember]
+        public string name { get; set; }
         public Province Province { get; set; }
     }
 }
+

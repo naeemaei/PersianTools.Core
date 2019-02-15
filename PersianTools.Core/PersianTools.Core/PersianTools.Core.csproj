@@ -151,11 +151,23 @@ persianDateTime.GetDateData();
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="IranCities - Copy.json" />
+    <None Remove="IranCities.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="IranCities.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="CustomBinder\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MD.BootstrapPersianDateTimePicker" Version="2.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
@@ -173,5 +185,7 @@ persianDateTime.GetDateData();
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
