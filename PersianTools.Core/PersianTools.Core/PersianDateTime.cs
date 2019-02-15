@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace PersianTools.Core
 {
@@ -82,7 +83,7 @@ namespace PersianTools.Core
         {
             get
             {
-                return this.ToString("yyyy/MM/dd");
+                return this.ToString();
             }
         }
         public TimeSpan TimeOfDay
@@ -265,7 +266,7 @@ namespace PersianTools.Core
             GetDiffrenceToNow(dt.dateTime);
         public override string ToString()
         {
-            return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
+            return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")}";
         }
         /// <summary>
         /// شنبه بیست آذر سال یکهزار سیصد و نود وهفت ساعت هفت و سی دقیقه و بیست ثانیه
@@ -447,6 +448,7 @@ namespace PersianTools.Core
         }
         public string ToString(string format)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("fa-IR");
             DateTime dateTime = new DateTime(Year, Month, Day, Hour, Minute, Second,Millisecond,persianCalendar);
             return dateTime.ToString(format, new System.Globalization.CultureInfo("fa-IR"));
             //return $"{this.Year}/{this.Month.ToString("00")}/{this.Day.ToString("00")} {this.Hour.ToString("00")}:{this.Minute.ToString("00")}:{this.Second.ToString("00")}";
@@ -540,13 +542,19 @@ namespace PersianTools.Core
         public static double DateDifference(PersianDateTime d1, PersianDateTime d2)
         => (d1.dateTime - d2.dateTime).TotalDays;
         public static List<PersianDateTime> GenerateYearlyCalender(int year)
-        {
-            List<PersianDateTime> persianDateTimes = new List<PersianDateTime>();
+        { 
+            List<PersianDateTime> persianDateTimes = new List<PersianDateTime>(366);
             var StartDate = StartOfYearPersianDateTime(year);
             var EndDate = EndOfYearPersianDateTime(year);
-            while (StartDate < EndDate)
+            //while (StartDate < EndDate)
+            //{
+            //    StartDate++;
+            //    if(StartDate.IsHoliDay || StartDate.dateTime.DayOfWeek==System.DayOfWeek.Friday || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Thursday)
+            //        persianDateTimes.Add(StartDate);
+            //}
+            for (PersianDateTime p=StartDate; (StartDate.IsHoliDay || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Friday || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Thursday) &&p <EndDate;p++)
             {
-                persianDateTimes.Add(StartDate++);
+                persianDateTimes.Add(p);
             }
             return persianDateTimes;
         }
