@@ -44,7 +44,6 @@ namespace PersianTools.Core
             {
                 item.ProvinceId  = Provinces.IndexOf(item)+1;
                 item.Cities.ForEach(a => a.ProvinceId = item.ProvinceId);
-                item.Cities.ForEach(a => a.Province = item);
                 item.Cities.ForEach(a => a.CityId = ++i);
             }
         }
@@ -54,7 +53,7 @@ namespace PersianTools.Core
     {
         public int ProvinceId { get; set; }
         [DataMember]
-        public string name { get; set; }
+        public string Name { get; set; }
         [DataMember]
         public List<City> Cities { get; set; }
     }
@@ -64,8 +63,8 @@ namespace PersianTools.Core
         public int ProvinceId { get; set; }
         public int CityId { get; set; }
         [DataMember]
-        public string name { get; set; }
-        public Province Province { get; set; }
+        public string Name { get; set; }
+        //public Province Province { get; set; }
     }
 }
 

@@ -27,6 +27,19 @@ namespace PersianTools.Web.Controllers
 
             return View();
         }
+        public ViewResult ProvinceList()
+        {
+            return View();
+        }
+        public JsonResult GetProvinceList()
+        {
+            return Json(PersianTools.Core.CityUtil.Instance.Provinces, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetCityList(int provinceId)
+        { 
+            var cities = CityUtil.Instance.Provinces.Find(a => a.ProvinceId == provinceId).Cities;
+            return Json(cities, JsonRequestBehavior.AllowGet);
+        }
         public ViewResult Calendar()
         {
             var CurrentDate = PersianDateTime.Now;
