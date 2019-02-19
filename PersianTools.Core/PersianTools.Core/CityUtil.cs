@@ -11,7 +11,7 @@ namespace PersianTools.Core
 {
     public class CityUtil
     {
-        public List<Province> Provinces;
+        public List<Province> Provinces { get; set; }
         private static CityUtil instance;
         private CityUtil()
         {

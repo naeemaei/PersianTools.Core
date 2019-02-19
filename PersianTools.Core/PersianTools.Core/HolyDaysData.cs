@@ -10,8 +10,8 @@ namespace PersianTools.Core
 {
     public class HoliDaysData
     {
-        private static HoliDaysData instance;
-        public List<DaysData> daysData;
+        private static HoliDaysData instance { get; set; }
+        public List<DaysData> daysData { get; set; }
         private readonly static PersianCalendar persianCalendar = new PersianCalendar();
         private readonly static HijriCalendar hijriCalendar = new HijriCalendar() { HijriAdjustment = -1 };
         private HoliDaysData()
@@ -343,7 +343,7 @@ namespace PersianTools.Core
             );
             foreach (var item in data)
             {
-                dateMetaDatas.Add( new DateMetaData()
+                dateMetaDatas.Add( new DateMetaData 
                 {
                     CalenderType = item.CalenderType
                 ,

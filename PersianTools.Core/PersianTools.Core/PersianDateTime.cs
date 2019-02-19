@@ -50,7 +50,7 @@ namespace PersianTools.Core
         private const int DaysPerYear = 365;
         #endregion
         private readonly static PersianCalendar persianCalendar = new PersianCalendar();
-        private readonly static HijriCalendar hijri = new HijriCalendar() { HijriAdjustment = -1 };
+        private readonly static HijriCalendar hijri = new HijriCalendar { HijriAdjustment = -1 };
         private DateTime dateTime;
         public DateTime DateTime
         {

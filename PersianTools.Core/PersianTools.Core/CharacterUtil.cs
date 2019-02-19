@@ -230,6 +230,7 @@ namespace PersianTools.Core
                     case 18:return "هجده";
                     case 19:return "نوزده";
                     case 20:return "بیست";
+                    default: return " ";
                 }
             }
             return "******";
@@ -318,8 +319,8 @@ namespace PersianTools.Core
                 case 800: return "هشتصد";
                 case 900: return "نهصد";
                 case 1000: return "هزار";
-            }
-            return "******";
+                default: return "******";  
+            } 
         }
         
         private static long Quotient(long i, long j)
