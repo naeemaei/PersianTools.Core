@@ -157,7 +157,7 @@ namespace PersianTools.Test
             str = d1.ToString("dddd, dd MMMM yyyy HH:mm");
             str = d1.ToString("yyyy/MM/dd HH:mm");
             str = d1.ToString("yyyy/MM/dd HH:mm:ss");
-            string s=""; 
+ 
             var dn = PersianDateTime.GenerateYearlyCalender(1375);
             var item = d1.DateMetaDatas;
             DateTime date = DateTime.Now;

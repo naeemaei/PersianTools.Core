@@ -89,7 +89,7 @@ namespace PersianTools.Web.Helper
                 var result = this.CompiledExpression(model);
                 return result == null ? string.Empty : result.ToString();
             }
-            catch (Exception ex)
+            catch 
             {
                 return "";
             }
