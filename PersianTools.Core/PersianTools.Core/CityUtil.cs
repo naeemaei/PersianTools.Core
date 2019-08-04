@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Text;
 
 namespace PersianTools.Core
 {
-    public class CityUtil
+	public class CityUtil
     {
         public List<Province> Provinces { get; set; }
         private static CityUtil instance;
@@ -63,8 +60,7 @@ namespace PersianTools.Core
         public int ProvinceId { get; set; }
         public int CityId { get; set; }
         [DataMember]
-        public string Name { get; set; }
-        //public Province Province { get; set; }
+        public string Name { get; set; } 
     }
 }
 
