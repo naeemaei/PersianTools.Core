@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using Xunit;
+using System.Linq;
 
 namespace PersianTools.Test
 {
@@ -182,5 +183,12 @@ namespace PersianTools.Test
             //var n3 = x3.ToLongStringYMDHMS(); 
 
         }
-    }
+		[Fact]
+		public void moharram_1399()
+		{
+			var d1 = new PersianDateTime(1401, 5, 16);
+			var str = d1.GetDateData();
+			Assert.True(d1.IsHoliDay && d1.DateMetaDatas.Any(d => d.DateType == DateType.HoliDay));
+		}
+	}
 }

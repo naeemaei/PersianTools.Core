@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace PersianTools.Core
 {
-    public class PersianDateTime : IComparable, IComparable<PersianDateTime>, IConvertible, IEquatable<PersianDateTime>, IFormattable
+	public class PersianDateTime : IComparable, IComparable<PersianDateTime>, IConvertible, IEquatable<PersianDateTime>, IFormattable
     {
         #region Fields
         public static readonly PersianDateTime MaxValue;
@@ -116,7 +114,6 @@ namespace PersianTools.Core
         {
             this.Year = this.Month = this.Day = this.Hour = this.Minute = this.Second = this.Millisecond = 0; this.HijriDate = new HijriDate();
             this.DateMetaDatas = null; this.IsHoliDay = false; this.dateTime = DateTime.Now;
-            //shamsiDate = shamsiDate.Replace(" ", "");
             if (!PersianHelper.IsPersianDateValid(shamsiDate.Replace(" ", "").Substring(0, 10)))
             {
                 throw new ArgumentOutOfRangeException("فرمت تاریخ وارد شده صحیح نمی باشد");
@@ -546,12 +543,6 @@ namespace PersianTools.Core
             List<PersianDateTime> persianDateTimes = new List<PersianDateTime>(366);
             var StartDate = StartOfYearPersianDateTime(year);
             var EndDate = EndOfYearPersianDateTime(year);
-            //while (StartDate < EndDate)
-            //{
-            //    StartDate++;
-            //    if(StartDate.IsHoliDay || StartDate.dateTime.DayOfWeek==System.DayOfWeek.Friday || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Thursday)
-            //        persianDateTimes.Add(StartDate);
-            //}
             for (PersianDateTime p=StartDate; (StartDate.IsHoliDay || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Friday || StartDate.dateTime.DayOfWeek == System.DayOfWeek.Thursday) &&p <EndDate;p++)
             {
                 persianDateTimes.Add(p);
