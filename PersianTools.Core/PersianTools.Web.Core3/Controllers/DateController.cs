@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using PersianTools.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using PersianTools.Core;
 
 namespace PersianTools.Web.Core3.Controllers
 {
@@ -25,9 +24,33 @@ namespace PersianTools.Web.Core3.Controllers
 		[HttpGet("calendar")]
 		public List<PersianDateTime> Calendar()
 		{
-			var CurrentDate = PersianDateTime.Now; 
+			var CurrentDate = PersianDateTime.Now;
 			var MonthData = PersianDateTime.GenerateMonthlyCalender(CurrentDate.Year, CurrentDate.Month);
 			return MonthData;
+		}
+
+		[HttpGet("holiday-data")]
+		public List<List<PersianDateTime>> HoliDayDataView(string theDate)
+		{
+			string thedate = CharacterUtil.ConvertToEnglishDigit(theDate);
+			//PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
+			var result = PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
+			foreach (var itemX in result)
+			{
+				foreach (var itemY in itemX)
+				{
+					if (itemY.DateMetaDatas.Count(a => a.IsHoliDay) == 0)
+					{
+						itemY.DateMetaDatas = new List<DateMetaData> { (new DateMetaData { Id = itemY.ToString("yyyy-MM-dd"), IsHoliDay = true, CalenderType = CalenderType.Jalali, DateType = DateType.HoliDay, Description = "تعطیلی آخر هفته" }) };
+					}
+				}
+			}
+			List<PersianDateTime> MainResult = new List<PersianDateTime>();
+			foreach (List<PersianDateTime> item in result)
+			{
+				MainResult.AddRange(item);
+			}
+			return result;
 		}
 	}
 }

@@ -1,10 +1,10 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace PersianTools.Web.Core3
 {
@@ -29,7 +29,7 @@ namespace PersianTools.Web.Core3
 				{
 					Title = "Persian Tools for dotnet core",
 					Version = "v1",
-					Description = "Persian Tools for dotnet core", 
+					Description = "Persian Tools for dotnet core",
 					Contact = new OpenApiContact
 					{
 						Name = "Hamed Naeemaei",
