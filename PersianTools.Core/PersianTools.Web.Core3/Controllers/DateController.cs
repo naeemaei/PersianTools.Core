@@ -25,16 +25,20 @@ namespace PersianTools.Web.Core3.Controllers
 		public List<PersianDateTime> Calendar()
 		{
 			var CurrentDate = PersianDateTime.Now;
-			var MonthData = PersianDateTime.GenerateMonthlyCalender(CurrentDate.Year, CurrentDate.Month);
+			var MonthData = PersianDateExtensions.GenerateMonthlyCalender(CurrentDate.Year, CurrentDate.Month);
 			return MonthData;
 		}
 
-		[HttpGet("holiday-data")]
-		public List<List<PersianDateTime>> HoliDayDataView(string theDate)
+		[HttpGet("get-day-info")]
+		public IEnumerable<DateMetaData> GetDayInformation(string persianDate)
 		{
-			string thedate = CharacterUtil.ConvertToEnglishDigit(theDate);
-			//PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
-			var result = PersianDateTime.GetLongHoliDays(Convert.ToInt32(thedate.Substring(0, 4)));
+			return PersianDateTime.Now.GetDateInformation();
+		}
+
+		[HttpGet("get-year-holiday-info")]
+		public List<List<PersianDateTime>> GetYearHoliDayInformation(int year)
+		{
+			var result = PersianDateExtensions.GetContinuousHolidays(year, 3);
 			foreach (var itemX in result)
 			{
 				foreach (var itemY in itemX)
@@ -45,10 +49,10 @@ namespace PersianTools.Web.Core3.Controllers
 					}
 				}
 			}
-			List<PersianDateTime> MainResult = new List<PersianDateTime>();
+			List<PersianDateTime> mainResult = new List<PersianDateTime>();
 			foreach (List<PersianDateTime> item in result)
 			{
-				MainResult.AddRange(item);
+				mainResult.AddRange(item);
 			}
 			return result;
 		}

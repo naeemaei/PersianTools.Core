@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Core", "Persia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Test", "PersianTools.Test\PersianTools.Test.csproj", "{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianTools.Web", "PersianTools.Web\PersianTools.Web.csproj", "{D2D90933-4476-4B7F-A0C0-A59523B67CF6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianTools.Web.Core3", "PersianTools.Web.Core3\PersianTools.Web.Core3.csproj", "{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Web.Core3", "PersianTools.Web.Core3\PersianTools.Web.Core3.csproj", "{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2D90933-4476-4B7F-A0C0-A59523B67CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2D90933-4476-4B7F-A0C0-A59523B67CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2D90933-4476-4B7F-A0C0-A59523B67CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2D90933-4476-4B7F-A0C0-A59523B67CF6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
