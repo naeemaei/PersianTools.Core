@@ -10,144 +10,148 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>ابزار Persian Tools
+    <Description>
+      ابزار Persian Tools
 
-نوع داده ای تاریخ شمسی و تبدیل تاریخ
-لیست شهرها و استان های ایران
-Custom Validations
-Model Binders 
- اضافه شده تعطیلات و مناسب های شمسی، قمری و میلادی به پروژه
-محاسبه تعداد روزهای کاری در یک بازه تاریخی
-نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
-تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال</Description>
+      نوع داده ای تاریخ شمسی و تبدیل تاریخ
+      لیست شهرها و استان های ایران
+      Custom Validations
+      Model Binders
+      اضافه شده تعطیلات و مناسب های شمسی، قمری و میلادی به پروژه
+      محاسبه تعداد روزهای کاری در یک بازه تاریخی
+      نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
+      تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال
+    </Description>
     <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
     <Version>1.1.2</Version>
     <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Hamed Naeemaei</Authors>
-    <PackageReleaseNotes>ابزار Persian Tools
-ابزار Persian Tool یک Library است که در پروژه هایی که روی Dot Net Framework و Dot Net Standard و Dot Net Core نوشته شده اند قابل استفاده است
+    <PackageReleaseNotes>
+      ابزار Persian Tools
+      ابزار Persian Tool یک Library است که در پروژه هایی که روی Dot Net Framework و Dot Net Standard و Dot Net Core نوشته شده اند قابل استفاده است
 
-ویژگی های موجود در ابزار Persian Tools:
-تبدیل اعداد به حروف
-نوع داده ای تاریخ شمسی و تبدیل تاریخ
-لیست شهرها و استان های ایران
-Custom Validations
-Model Binders
-نحوه استفاده:
+      ویژگی های موجود در ابزار Persian Tools:
+      تبدیل اعداد به حروف
+      نوع داده ای تاریخ شمسی و تبدیل تاریخ
+      لیست شهرها و استان های ایران
+      Custom Validations
+      Model Binders
+      نحوه استفاده:
 
-نام ویژگی	نحوه استفاده	خروجی
-تبدیل اعداد به حروف	PersianTools.Core.CharacterUtil.Convert(11200000)	یازده میلیون و دویست هزار
-انواع روشهای تعریف تاریخ شمسی	
-var dt1 = new PersianDateTime(1399, 10, 13);
+      نام ویژگی	نحوه استفاده	خروجی
+      تبدیل اعداد به حروف	PersianTools.Core.CharacterUtil.Convert(11200000)	یازده میلیون و دویست هزار
+      انواع روشهای تعریف تاریخ شمسی
+      var dt1 = new PersianDateTime(1399, 10, 13);
 
-انواع روشهای تعریف تاریخ شمسی	var dt2 = new PersianDateTime("1399/10/13");
+      انواع روشهای تعریف تاریخ شمسی	var dt2 = new PersianDateTime("1399/10/13");
 
-انواع روشهای تعریف تاریخ شمسی	
-var dt1 = new PersianDateTime("1399/12/29 23:30");
+      انواع روشهای تعریف تاریخ شمسی
+      var dt1 = new PersianDateTime("1399/12/29 23:30");
 
-var dt2 = new PersianDateTime("1399/12/29 23:30:00");
+      var dt2 = new PersianDateTime("1399/12/29 23:30:00");
 
-انواع روشهای تعریف تاریخ شمسی	
-var dt1 = new PersianDateTime("1399/12/29 23:30");
+      انواع روشهای تعریف تاریخ شمسی
+      var dt1 = new PersianDateTime("1399/12/29 23:30");
 
-var dt2 = new PersianDateTime("1399/12/29 23:30:00");
+      var dt2 = new PersianDateTime("1399/12/29 23:30:00");
 
-انواع روشهای تعریف تاریخ شمسی	
-var dt1 = new PersianDateTime(1399,12,29,23,30,10);
-var dt2 = new PersianDateTime("1399/12/29 23:30:10");
+      انواع روشهای تعریف تاریخ شمسی
+      var dt1 = new PersianDateTime(1399,12,29,23,30,10);
+      var dt2 = new PersianDateTime("1399/12/29 23:30:10");
 
-تعریف بر اساس تاریخ میلادی	
-DateTime dateTime = DateTime.Now;
-var persianDateTime = new PersianDateTime(dateTime);
+      تعریف بر اساس تاریخ میلادی
+      DateTime dateTime = DateTime.Now;
+      var persianDateTime = new PersianDateTime(dateTime);
 
-ابتدای روز	
-var dt1 = PersianDateTime.StartOfDay( new PersianDateTime("1399/12/29 23:30:20"));
+      ابتدای روز
+      var dt1 = PersianDateTime.StartOfDay( new PersianDateTime("1399/12/29 23:30:20"));
 
-1399/12/29 00:00:00
-انتهای روز	var dt1 = PersianDateTime.EndOfDay(new PersianDateTime("1399/12/29 23:30:20"));	1399/12/29 23:59:59
-فاصله دو تاریخ	var dt1 = new PersianDateTime("1399/12/29");
-var dt2 = new PersianDateTime("1399/11/29");
-Convert.ToInt32(PersianDateTime.DateDifference(dt1,dt2));	30
-آخرین روز سال	
-var d1 = PersianDateTime.EndOfYearPersianDateTime(1397);
+      1399/12/29 00:00:00
+      انتهای روز	var dt1 = PersianDateTime.EndOfDay(new PersianDateTime("1399/12/29 23:30:20"));	1399/12/29 23:59:59
+      فاصله دو تاریخ	var dt1 = new PersianDateTime("1399/12/29");
+      var dt2 = new PersianDateTime("1399/11/29");
+      Convert.ToInt32(PersianDateTime.DateDifference(dt1,dt2));	30
+      آخرین روز سال
+      var d1 = PersianDateTime.EndOfYearPersianDateTime(1397);
 
-var d2 = PersianDateTime.EndOfYearPersianDateTime(1399);
+      var d2 = PersianDateTime.EndOfYearPersianDateTime(1399);
 
-1397/12/29
+      1397/12/29
 
-1399/12/30
+      1399/12/30
 
-آخرین روز ماه	
-var d1 = PersianDateTime.EndDateOfMonth(1397,12);
+      آخرین روز ماه
+      var d1 = PersianDateTime.EndDateOfMonth(1397,12);
 
-var d1 = PersianDateTime.EndDateOfMonth(1399,12);
+      var d1 = PersianDateTime.EndDateOfMonth(1399,12);
 
-1397/12/29
+      1397/12/29
 
-1399/12/30
+      1399/12/30
 
-تولید ساعت	var d1 = PersianDateTime.Now.ToLongStringHMS();	ساعت بیست و سه و پنجاه و نه دقیقه و پنجاه و نه ثانیه
-تولید ساعت	var d1 = PersianDateTime.Now.ToLongStringHM();	ساعت بیست و سه و پنجاه و نه دقیقه
-تولید تاریخ	var d1 = PersianDateTime.Now.ToLongStringYMD();	جمعه بیست و هفت مهر سال یکهزار و سیصد و نود و هفت
-اعتبارسنجی شماره موبایل	
-[MobileNo]
+      تولید ساعت	var d1 = PersianDateTime.Now.ToLongStringHMS();	ساعت بیست و سه و پنجاه و نه دقیقه و پنجاه و نه ثانیه
+      تولید ساعت	var d1 = PersianDateTime.Now.ToLongStringHM();	ساعت بیست و سه و پنجاه و نه دقیقه
+      تولید تاریخ	var d1 = PersianDateTime.Now.ToLongStringYMD();	جمعه بیست و هفت مهر سال یکهزار و سیصد و نود و هفت
+      اعتبارسنجی شماره موبایل
+      [MobileNo]
 
-public string MobNo;
+      public string MobNo;
 
-فاصله دو تاریخ	ar dt1 = new PersianDateTime("1399/12/29");
-var dt2 = new PersianDateTime("1399/11/29");
-Convert.ToInt32(PersianDateTime.DateDifference(dt1,dt2));	30
-فاصله یک تاریخ تا امروز	PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-1365));	3 سال و 9 ماه و 9 روز و 3 ساعت و 30 دقیقه پیش
-دریافت تاریخ قمری 
-var dt2 = new PersianDateTime("1399/11/29");
+      فاصله دو تاریخ	ar dt1 = new PersianDateTime("1399/12/29");
+      var dt2 = new PersianDateTime("1399/11/29");
+      Convert.ToInt32(PersianDateTime.DateDifference(dt1,dt2));	30
+      فاصله یک تاریخ تا امروز	PersianDateTime.GetDiffrenceToNow(DateTime.UtcNow.AddDays(-1365));	3 سال و 9 ماه و 9 روز و 3 ساعت و 30 دقیقه پیش
+      دریافت تاریخ قمری
+      var dt2 = new PersianDateTime("1399/11/29");
 
-PersianDateTime.GetHijriDate(dt2 );
+      PersianDateTime.GetHijriDate(dt2 );
 
-1442/07/06
-تولید تقویم یکساله شمسی	
-var Cal= PersianDateTime.GenerateYearlyCalender(1375);
+      1442/07/06
+      تولید تقویم یکساله شمسی
+      var Cal= PersianDateTime.GenerateYearlyCalender(1375);
 
-لیستی از روزهای سال و مناسبتها هر روز
-دریافت لیست تعطیلیهای بیش از دو روز در تقویم	
-var x2 = PersianDateTime.GetLongHoliDays(1398);
+      لیستی از روزهای سال و مناسبتها هر روز
+      دریافت لیست تعطیلیهای بیش از دو روز در تقویم
+      var x2 = PersianDateTime.GetLongHoliDays(1398);
 
-لیستی از تعطیلات مناسب سال
-تعداد روزهای کاری در یک بازه تاریخی	
-var d1 = new PersianDateTime(1397, 8, 1);
-var d2 = new PersianDateTime(1397, 8, 30);
-PersianDateTime.GetWorkingDays(d1,d2);
+      لیستی از تعطیلات مناسب سال
+      تعداد روزهای کاری در یک بازه تاریخی
+      var d1 = new PersianDateTime(1397, 8, 1);
+      var d2 = new PersianDateTime(1397, 8, 30);
+      PersianDateTime.GetWorkingDays(d1,d2);
 
-20
-اضافه شده تعطیلات و مناسب های شمسی، قمری و میلادی به پروژه
-در جهت پوشش همه مناسبتهای موجود در تقویم هجری شمسی ( شامل مناسبت های شمسی، قمری و میلادی) این مناسبتها به این کتابخانه اضافه گردید که نحوه استفاده از آن بدین شکل می باشد:
+      20
+      اضافه شده تعطیلات و مناسب های شمسی، قمری و میلادی به پروژه
+      در جهت پوشش همه مناسبتهای موجود در تقویم هجری شمسی ( شامل مناسبت های شمسی، قمری و میلادی) این مناسبتها به این کتابخانه اضافه گردید که نحوه استفاده از آن بدین شکل می باشد:
 
-تعریف یک نمونه متغیر از جنس تاریخ شمسی :
+      تعریف یک نمونه متغیر از جنس تاریخ شمسی :
 
-var persianDateTime= new PersianDateTime(1397,3,1);
+      var persianDateTime= new PersianDateTime(1397,3,1);
 
-نحوه دریافت مناسبتهای یک تاریخ:
+      نحوه دریافت مناسبتهای یک تاریخ:
 
-persianDateTime.GetDateData();
+      persianDateTime.GetDateData();
 
-خروجی:
+      خروجی:
 
-روز بهره وری و بهینه سازی مصرف - روز بزرگداشت ملاصدرا -
+      روز بهره وری و بهینه سازی مصرف - روز بزرگداشت ملاصدرا -
 
-برای هر تاریخ یک ویژگی به نام IsHoliDay وجود دارد که مشخص می کند روز انتخاب شده تعطیل می باشد یا خیر.
+      برای هر تاریخ یک ویژگی به نام IsHoliDay وجود دارد که مشخص می کند روز انتخاب شده تعطیل می باشد یا خیر.
 
-ممکن است برای تاریخ خاصی بیش از یک رویداد وجود داشته باشد که می توان از DateMetaDatas استفاده کرد، که در آن لیستی از مناسبتهای تاریخ وجود دارد علاوه بر این مشخص شده است:
+      ممکن است برای تاریخ خاصی بیش از یک رویداد وجود داشته باشد که می توان از DateMetaDatas استفاده کرد، که در آن لیستی از مناسبتهای تاریخ وجود دارد علاوه بر این مشخص شده است:
 
-این مناسبت تعطیل است یا خیر؟
-مناسبت شمسی، قمری یا میلادی است
-نوع مناسبت ملی، بین المللی یا مذهبی است
-سایر قابلیت ها:
+      این مناسبت تعطیل است یا خیر؟
+      مناسبت شمسی، قمری یا میلادی است
+      نوع مناسبت ملی، بین المللی یا مذهبی است
+      سایر قابلیت ها:
 
-محاسبه تعداد روزهای کاری در یک بازه تاریخی
-نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
-تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال</PackageReleaseNotes>
+      محاسبه تعداد روزهای کاری در یک بازه تاریخی
+      نمایش لیستی از روزهای تعطیل و دارای مناسبت در سال و امکان انجام فیلتر بر روی لیست روزها
+      تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال
+    </PackageReleaseNotes>
     <NeutralLanguage>fa</NeutralLanguage>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <AssemblyVersion>1.1.3.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -186,6 +190,10 @@ persianDateTime.GetDateData();
     </EmbeddedResource>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
