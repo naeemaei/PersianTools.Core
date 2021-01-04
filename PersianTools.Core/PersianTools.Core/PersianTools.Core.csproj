@@ -23,7 +23,7 @@
       تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال
     </Description>
     <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
     <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Hamed Naeemaei</Authors>
@@ -151,7 +151,7 @@
       تابع ایجاد لیست روزهای متوالی بیش از 3 روز تعطیل در یک سال
     </PackageReleaseNotes>
     <NeutralLanguage>fa</NeutralLanguage>
-    <AssemblyVersion>1.1.3.0</AssemblyVersion>
+    <AssemblyVersion>1.1.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -170,7 +170,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MD.BootstrapPersianDateTimePicker" Version="2.3.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
