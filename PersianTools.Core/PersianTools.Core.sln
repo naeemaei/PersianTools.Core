@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Core", "Persia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Test", "PersianTools.Test\PersianTools.Test.csproj", "{2215AE8C-C8FD-4B2F-A564-B138B1CA2E72}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Web.Core3", "PersianTools.Web.Core3\PersianTools.Web.Core3.csproj", "{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersianTools.Web.Core", "PersianTools.Web.Core3\PersianTools.Web.Core.csproj", "{693B73A2-F11E-4BEB-B3DD-1063F7BCF88F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
