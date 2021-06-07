@@ -100,8 +100,8 @@
  <tr style="height: 40.8px;">
  <td style="width: 79.2px; height: 40.8px; text-align: center;"><span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">آخرین روز سال</span></td>
  <td dir="ltr" style="width: 451.2px; height: 40.8px; text-align: left;">
- <p>var d1 = PersianDateTime.EndOfYearPersianDateTime(1397);</p>
- <p>var d2 = PersianDateTime.EndOfYearPersianDateTime(1399);</p>
+ <p>var d1 = PersianDateExtensions.ShamsiEndDateTimeOfPersianYear(1397);</p>
+ <p>var d2 = PersianDateExtensions.ShamsiEndDateTimeOfPersianYear(1399);</p>
  </td>
  <td style="width: 101.6px; height: 40.8px; text-align: left;">
  <p>1397/12/29</p>
@@ -111,8 +111,8 @@
  <tr style="height: 40.8px;">
  <td style="width: 79.2px; height: 40.8px; text-align: center;"><span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">آخرین روز ماه</span></td>
  <td dir="ltr" style="width: 451.2px; height: 40.8px; text-align: left;">
- <p>var d1 = PersianDateTime.EndDateOfMonth(1397,12);</p>
- <p>var d1 = PersianDateTime.EndDateOfMonth(1399,12);</p>
+ <p>var d1 = PersianDateExtensions.ShamsiEndDateTimeOfMonth(1397,12);</p>
+ <p>var d1 = PersianDateExtensions.ShamsiEndDateTimeOfMonth(1399,12);</p>
  </td>
  <td style="width: 101.6px; height: 40.8px; text-align: left;">
  <p>1397/12/29&nbsp;</p>
