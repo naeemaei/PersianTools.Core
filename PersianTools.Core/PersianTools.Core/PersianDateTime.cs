@@ -48,7 +48,6 @@ namespace PersianTools.Core
         #endregion
 
         private readonly static PersianCalendar persianCalendar = new PersianCalendar();
-        private readonly static HijriCalendar hijri = new HijriCalendar { HijriAdjustment = -1 };
 
         private DateTime dateTime;
 
@@ -165,11 +164,12 @@ namespace PersianTools.Core
             Second = persianCalendar.GetSecond(datetime);
             Millisecond = Convert.ToInt32(persianCalendar.GetMilliseconds(datetime));
             HijriDate = new HijriDate();
-            SetHijriAdjustment(hijri.GetYear(datetime), hijri.GetMonth(datetime), hijri.GetDayOfMonth(datetime));
-            HijriDate.Year = hijri.GetYear(datetime);
-            HijriDate.Month = hijri.GetMonth(datetime);
-            HijriDate.Day = hijri.GetDayOfMonth(datetime);
-            DateMetaDatas = HoliDaysData.GetInstance(hijri).GetMetaDataByDateTime(datetime);
+            HijriCalendarManager.SetHijriCalendar(datetime);
+            HijriDate.Year = HijriCalendarManager.GetHijriCalendar().GetYear(datetime);
+            HijriDate.Month = HijriCalendarManager.GetHijriCalendar().GetMonth(datetime);
+            HijriDate.Day = HijriCalendarManager.GetHijriCalendar().GetDayOfMonth(datetime);
+            DateMetaDatas = HoliDaysData.GetInstance().GetMetaDataByDateTime(datetime);
+
             IsHoliDay = datetime.DayOfWeek == System.DayOfWeek.Friday;
             foreach (var item in DateMetaDatas)
             {
@@ -177,76 +177,7 @@ namespace PersianTools.Core
             }
         }
 
-        private void SetHijriAdjustment(int year, int month, int day = 0)
-        {
-            switch (year)
-            {
-                case 1438: /* 1395 */
-                    hijri.HijriAdjustment = -1;
 
-                    if (month == 2 || month == 12)
-                        hijri.HijriAdjustment = 0;
-
-                    else if (month == 7)
-                        hijri.HijriAdjustment = -2;
-
-                    break;
-
-                case 1439: /* 1396 */
-                    hijri.HijriAdjustment = -1;
-
-                    if (month == 2)
-                        hijri.HijriAdjustment = 0;
-
-                    else if ((month == 9 && day == 30))
-                        hijri.HijriAdjustment = -1;
-
-                    else if ((month >= 6 && month <= 9) || month == 11)
-                        hijri.HijriAdjustment = -2;
-
-                    break;
-
-                case 1440: /* 1397 */
-                    hijri.HijriAdjustment = 0;
-
-                    if (month == 9 && day < 30)
-                        hijri.HijriAdjustment = -2;
-
-                    else if (month >= 5)
-                        hijri.HijriAdjustment = -1;
-
-                    break;
-
-                case 1441: /* 1398 */
-                    hijri.HijriAdjustment = -1;
-
-                    if (month == 2)
-                        hijri.HijriAdjustment = 0;
-
-                    else if (month == 9 && day < 30)
-                        hijri.HijriAdjustment = -2;
-
-
-                    break;
-
-                case 1442: /* 1399 */
-                    hijri.HijriAdjustment = -2;
-
-                    if (month >= 2 && month < 9)
-                        hijri.HijriAdjustment = -1;
-
-                    break;
-
-                case 1443: /* 1400 */
-                    hijri.HijriAdjustment = -1;
-                    break;
-
-                default:
-                    hijri.HijriAdjustment = -1;
-                    break;
-
-            }
-        }
 
         #endregion
 

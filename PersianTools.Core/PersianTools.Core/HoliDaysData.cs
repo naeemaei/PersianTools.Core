@@ -11,17 +11,15 @@ namespace PersianTools.Core
         private static HoliDaysData instance { get; set; }
         public List<DaysData> DaysData { get; set; }
         private readonly static PersianCalendar PersianCalendar = new PersianCalendar();
-        private HijriCalendar HijriCalendar { get; set; }
-        private HoliDaysData(HijriCalendar hijriCalendar)
+        private HoliDaysData()
         {
-            HijriCalendar = hijriCalendar;
             LoadData();
         }
-        public static HoliDaysData GetInstance(HijriCalendar hijriCalendar)
+        public static HoliDaysData GetInstance()
         {
             if (instance == null)
             {
-                instance = new HoliDaysData(hijriCalendar);
+                instance = new HoliDaysData();
             }
             return instance;
         }
@@ -42,7 +40,8 @@ namespace PersianTools.Core
             DaysData.Add(new DaysData(61, 1, 10, CalenderType.Hijri, DateType.HoliDay, "عاشورای حسینی"));
             DaysData.Add(new DaysData(61, 2, 20, CalenderType.Hijri, DateType.HoliDay, "اربعین حسینی"));
             DaysData.Add(new DaysData(61, 2, 28, CalenderType.Hijri, DateType.HoliDay, "رحلت رسول اکرم؛شهادت امام حسن مجتبی علیه السلام"));
-            DaysData.Add(new DaysData(61, 2, 29, CalenderType.Hijri, DateType.HoliDay, "شهادت امام رضا علیه السلام"));
+            DaysData.Add(new DaysData(61, 2, 29, CalenderType.Hijri, DateType.HoliDay, "شهادت امام رضا علیه السلام")); // در ماههای 29 روزه روز 29 ام تعطیل خواهد بود
+            DaysData.Add(new DaysData(61, 2, 30, CalenderType.Hijri, DateType.HoliDay, "شهادت امام رضا علیه السلام"));
             DaysData.Add(new DaysData(61, 3, 8, CalenderType.Hijri, DateType.HoliDay, "شهادت امام حسن عسکری علیه السلام"));
             DaysData.Add(new DaysData(61, 3, 17, CalenderType.Hijri, DateType.HoliDay, "میلاد رسول اکرم و امام جعفر صادق علیه السلام"));
             DaysData.Add(new DaysData(61, 6, 3, CalenderType.Hijri, DateType.HoliDay, "شهادت حضرت فاطمه زهرا سلام الله علیها"));
@@ -333,12 +332,21 @@ namespace PersianTools.Core
         }
         public IList<DateMetaData> GetMetaDataByDateTime(DateTime dateTime)
         {
+            var hijriCalendar = HijriCalendarManager.GetHijriCalendar();
             IList<DateMetaData> dateMetaDatas = new List<DateMetaData>();
             var data = DaysData.Where(a =>
             (a.Month == PersianCalendar.GetMonth(dateTime) && a.Day == PersianCalendar.GetDayOfMonth(dateTime) && a.CalenderType == CalenderType.Jalali) ||
-            (a.Month == HijriCalendar.GetMonth(dateTime) && a.Day == HijriCalendar.GetDayOfMonth(dateTime) && a.CalenderType == CalenderType.Hijri) ||
+            (a.Month == hijriCalendar.GetMonth(dateTime) && a.Day == hijriCalendar.GetDayOfMonth(dateTime) && a.CalenderType == CalenderType.Hijri) ||
             (a.Month == dateTime.Month && a.Day == dateTime.Day && a.CalenderType == CalenderType.Miladi)
             );
+
+            if (hijriCalendar.GetMonth(dateTime) == 2 && hijriCalendar.GetDayOfMonth(dateTime) == 29)
+            {
+                var tempDate = dateTime.AddDays(1);
+                hijriCalendar = HijriCalendarManager.SetHijriCalendar(tempDate);
+                if (hijriCalendar.GetMonth(tempDate) == 2 && hijriCalendar.GetDayOfMonth(tempDate) == 30)
+                    data = data.ToList().Except(data.Where(e => e.CalenderType == CalenderType.Hijri && e.DateType == DateType.HoliDay)).ToList();
+            }
             foreach (var item in data)
             {
                 dateMetaDatas.Add(new DateMetaData
