@@ -155,6 +155,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CustomBinder\**" />
+    <EmbeddedResource Remove="CustomBinder\**" />
+    <None Remove="CustomBinder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="IranCities.json" />
   </ItemGroup>
 
@@ -165,7 +171,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CustomBinder\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
