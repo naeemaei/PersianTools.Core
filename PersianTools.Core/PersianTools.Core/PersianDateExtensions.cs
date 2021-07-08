@@ -12,50 +12,50 @@ namespace PersianTools.Core
 
         public static PersianDateTime AddDays(this PersianDateTime persianDateTime, int days)
         {
-            persianDateTime.DateTime = PersianCalendar.AddDays(persianDateTime.DateTime, days);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddDays(persianDateTime.DateTime, days);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMonths(this PersianDateTime persianDateTime, int months)
         {
-            persianDateTime.DateTime = PersianCalendar.AddMonths(persianDateTime.DateTime, months);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddMonths(persianDateTime.DateTime, months);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddYears(this PersianDateTime persianDateTime, int years)
         {
-            persianDateTime.DateTime = PersianCalendar.AddYears(persianDateTime.DateTime, years);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddYears(persianDateTime.DateTime, years);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddHours(this PersianDateTime persianDateTime, int hours)
         {
-            persianDateTime.DateTime = PersianCalendar.AddHours(persianDateTime.DateTime, hours);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddHours(persianDateTime.DateTime, hours);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMinutes(this PersianDateTime persianDateTime, int minutes)
         {
-            persianDateTime.DateTime = PersianCalendar.AddMinutes(persianDateTime.DateTime, minutes);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddMinutes(persianDateTime.DateTime, minutes);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddSeconds(this PersianDateTime persianDateTime, int seconds)
         {
-            persianDateTime.DateTime = PersianCalendar.AddSeconds(persianDateTime.DateTime, seconds);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddSeconds(persianDateTime.DateTime, seconds);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMilliseconds(this PersianDateTime persianDateTime, int milliseconds)
         {
-            persianDateTime.DateTime = PersianCalendar.AddMilliseconds(persianDateTime.DateTime, milliseconds);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddMilliseconds(persianDateTime.DateTime, milliseconds);
+            return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddWeeks(this PersianDateTime persianDateTime, int weeks)
         {
-            persianDateTime.DateTime = PersianCalendar.AddWeeks(persianDateTime.DateTime, weeks);
-            return persianDateTime;
+            var dateTime = PersianCalendar.AddWeeks(persianDateTime.DateTime, weeks);
+            return new PersianDateTime(dateTime);
         }
 
         public static double DateDifference(this PersianDateTime d1, PersianDateTime d2)
