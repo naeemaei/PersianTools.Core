@@ -317,8 +317,6 @@ namespace PersianTools.Test
         [InlineData(1401, 4, 26)]
         [InlineData(1401, 5, 16)]
         [InlineData(1401, 5, 17)]
-        [InlineData(1400, 6, 16)]
-        [InlineData(1400, 6, 17)]
         public void Hijri_HolyDays_1400To1401(int year, int month, int day)
         {
             var theDate = new PersianDateTime(year, month, day);
