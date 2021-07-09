@@ -13,48 +13,56 @@ namespace PersianTools.Core
         public static PersianDateTime AddDays(this PersianDateTime persianDateTime, int days)
         {
             var dateTime = PersianCalendar.AddDays(persianDateTime.DateTime, days);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMonths(this PersianDateTime persianDateTime, int months)
         {
             var dateTime = PersianCalendar.AddMonths(persianDateTime.DateTime, months);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddYears(this PersianDateTime persianDateTime, int years)
         {
             var dateTime = PersianCalendar.AddYears(persianDateTime.DateTime, years);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddHours(this PersianDateTime persianDateTime, int hours)
         {
             var dateTime = PersianCalendar.AddHours(persianDateTime.DateTime, hours);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMinutes(this PersianDateTime persianDateTime, int minutes)
         {
             var dateTime = PersianCalendar.AddMinutes(persianDateTime.DateTime, minutes);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddSeconds(this PersianDateTime persianDateTime, int seconds)
         {
             var dateTime = PersianCalendar.AddSeconds(persianDateTime.DateTime, seconds);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddMilliseconds(this PersianDateTime persianDateTime, int milliseconds)
         {
             var dateTime = PersianCalendar.AddMilliseconds(persianDateTime.DateTime, milliseconds);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
         public static PersianDateTime AddWeeks(this PersianDateTime persianDateTime, int weeks)
         {
             var dateTime = PersianCalendar.AddWeeks(persianDateTime.DateTime, weeks);
+            persianDateTime.DateTime = dateTime;
             return new PersianDateTime(dateTime);
         }
 
@@ -115,14 +123,20 @@ namespace PersianTools.Core
             List<PersianDateTime> persianDateTimes = new List<PersianDateTime>(366);
             var StartDate = ShamsiStartDateTimeOfPersianYear(year);
             var EndDate = ShamsiEndDateTimeOfPersianYear(year);
-            for (PersianDateTime p = StartDate; (StartDate.IsHoliDay || StartDate.DateTime.DayOfWeek == System.DayOfWeek.Friday || StartDate.DateTime.DayOfWeek == System.DayOfWeek.Thursday) && p < EndDate; p++)
+            PersianDateTime cursor = StartDate;
+            while (cursor < EndDate)
             {
-                persianDateTimes.Add(p);
+                persianDateTimes.Add(cursor.Copy());
+                cursor = cursor.AddDays(1);
             }
+
             return persianDateTimes;
         }
 
-
+        public static PersianDateTime Copy(this PersianDateTime persianDateTime)
+        {
+            return new PersianDateTime(persianDateTime.DateTime);
+        }
 
         public static List<PersianDateTime> GenerateMonthlyCalender(int year, int month)
         {
