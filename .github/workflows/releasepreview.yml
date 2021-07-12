@@ -19,7 +19,6 @@ jobs:
       working-directory: PersianTools.Core/PersianTools.Core
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
-      working-directory: PersianTools.Core/PersianTools.Core
     - name: Push
       run: dotnet nuget push PersianTools.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/naeemaei/index.json --api-key ${GITHUB_TOKEN}
       env:
