@@ -17,13 +17,18 @@ jobs:
         git branch --remote --contains | grep origin/master
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      working-directory: PersianTools.Core/PersianTools.Core
     - name: Build
       run: dotnet build --configuration Release /p:Version=${VERSION}
+      working-directory: PersianTools.Core/PersianTools.Core
     - name: Test
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+      working-directory: PersianTools.Core/PersianTools.Core
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+      working-directory: PersianTools.Core/PersianTools.Core
     - name: Push
-      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/naeemaei/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push PersianTools.Core.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
+      working-directory: PersianTools.Core/PersianTools.Core
       env:
         GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}
