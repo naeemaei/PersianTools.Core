@@ -13,10 +13,10 @@ jobs:
       uses: actions/checkout@v2
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-      working-directory: PersianTools.Core/PersianTools.Core
+      working-directory: PersianTools.Core/PersianTools.Core/PersianTools.Core
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
-      working-directory: PersianTools.Core/PersianTools.Core
+      working-directory: PersianTools.Core/PersianTools.Core/PersianTools.Core
     - name: Push
       run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/naeemaei/index.json --api-key ${NUGET_API_KEY}
       env:
