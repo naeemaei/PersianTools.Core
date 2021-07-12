@@ -5,6 +5,10 @@
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>PersianTools.Core</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/naeemaei/PersianTools.Core</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,7 +38,7 @@
       لیست شهرها و استان های ایران
       Custom Validations
       Model Binders
-      
+
     </PackageReleaseNotes>
 
   </PropertyGroup>
