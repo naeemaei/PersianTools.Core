@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /PersianTools.Core/PersianTools.Core/IranCities - Copy.json
+*.dll

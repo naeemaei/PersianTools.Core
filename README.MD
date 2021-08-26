@@ -5,6 +5,11 @@
 </div>
 <hr>
 
+[![license](https://img.shields.io/github/license/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core/blob/master/LICENSE)  [![forks](https://img.shields.io/github/forks/naeemaei/PersianTools.Core)]()   [![stars](https://img.shields.io/github/stars/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core)  
+![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/dotnet.yml/badge.svg)
+![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/release.yml/badge.svg)
+![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/releasepreview.yml/badge.svg)
+
 <div dir="rtl" style="font-family: tahoma;">
 
 # چگونه آنرا نصب کنیم؟
