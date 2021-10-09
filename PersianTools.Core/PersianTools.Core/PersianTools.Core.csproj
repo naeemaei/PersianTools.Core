@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net5</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>
       ابزار Persian Tools
@@ -21,9 +21,10 @@
       Custom Validations
       Model Binders
     </Description>
+    <LangVersion>9.0</LangVersion>
     <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>2.0.1</Version>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
     <NeutralLanguage>fa</NeutralLanguage>
     <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
