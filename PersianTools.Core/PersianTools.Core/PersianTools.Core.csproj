@@ -41,9 +41,7 @@
       Model Binders
 
     </PackageReleaseNotes>
-
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="CustomBinder\**" />
     <EmbeddedResource Remove="CustomBinder\**" />
