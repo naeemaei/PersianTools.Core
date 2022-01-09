@@ -2,9 +2,9 @@
 
 namespace PersianTools.Test
 {
-    public class EnToFaDigitTest
+    public class EnToFaDigitTests
     {
-        public EnToFaDigitTest()
+        public EnToFaDigitTests()
         {
 
         }

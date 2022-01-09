@@ -6,10 +6,10 @@ using Xunit;
 
 namespace PersianTools.Test
 {
-    public class DateTimeTest
+    public class DateTimeTests
     {
         readonly PersianCalendar pc;
-        public DateTimeTest()
+        public DateTimeTests()
         {
             pc = new PersianCalendar();
         }
