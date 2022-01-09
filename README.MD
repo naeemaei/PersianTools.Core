@@ -5,7 +5,7 @@
 </div>
 <hr>
 
-[![license](https://img.shields.io/github/license/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core/blob/master/LICENSE)  [![forks](https://img.shields.io/github/forks/naeemaei/PersianTools.Core)]()   [![stars](https://img.shields.io/github/stars/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core)  
+[![license](https://img.shields.io/github/license/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core/blob/master/LICENSE) [![forks](https://img.shields.io/github/forks/naeemaei/PersianTools.Core)]() [![stars](https://img.shields.io/github/stars/naeemaei/PersianTools.Core)](https://github.com/naeemaei/PersianTools.Core)  
 ![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/dotnet.yml/badge.svg)
 ![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/release.yml/badge.svg)
 ![example workflow](https://github.com/naeemaei/PersianTools.COre/actions/workflows/releasepreview.yml/badge.svg)
@@ -13,14 +13,17 @@
 <div dir="rtl" style="font-family: tahoma;">
 
 # چگونه آنرا نصب کنیم؟
+
 </div>
 
 ## Nuget Package Manager
+
 ```
 Install-Package PersianTools.Core
 ```
 
 ## .NET CLI
+
 ```
 dotnet add package PersianTools.Core
 ```
@@ -29,29 +32,27 @@ dotnet add package PersianTools.Core
 
 # امکانات و ویژگی ها
 
-
 ##
--   [نوع جدید تاریخ شمسی](#نوع-جدید-تاریخ-شمسی)
--   [تبدیل اعداد به حروف](#)
--   [لیست شهرها و استان های ایران](#)
--   [اعتبار سنجش کد ملی](#)
--   [اعتبار سنجش  شماره کارت بانکی](#)
--   [اعتبار سنجش  شماره شبا](#)
--   [موقعیت مکانی شماره تلفن، موبایل و کدپستی](#)
+
+- [نوع جدید تاریخ شمسی](#نوع-جدید-تاریخ-شمسی)
+- [تبدیل اعداد به حروف](#)
+- [لیست شهرها و استان های ایران](#)
+- [اعتبار سنجش کد ملی](#)
+- [اعتبار سنجش شماره کارت بانکی](#)
+- [اعتبار سنجش شماره شبا](#)
+- [موقعیت مکانی شماره تلفن، موبایل و کدپستی](#)
 
 </div>
-
-
 
 <div dir="rtl" style="font-family: tahoma;">
 
 # نوع جدید تاریخ شمسی
 
-پس از نصب این پکیج  نوع جدیدی به نام ```PersianDateTime``` برای شما قابل استفاده خواهد بود که ویژگی های آن را در ادامه برای شما توضیح خواهیم داد.
+پس از نصب این پکیج نوع جدیدی به نام `PersianDateTime` برای شما قابل استفاده خواهد بود که ویژگی های آن را در ادامه برای شما توضیح خواهیم داد.
 که با استفاده از آن میتوانید انواع تبدیل تاریخ را انجام داده و کلیه تعطیلات شمسی و قمری به همراه مناسبتهای یک تاریخ مشاهده کنید
 <br><br>
 <b>
-فقط نکته ای که اهمیت داره اینه که این نوع ```Reference Type``` هستش و باید در استفاده ازش  به این نکته نوجه کنید
+فقط نکته ای که اهمیت داره اینه که این نوع `Reference Type` هستش و باید در استفاده ازش به این نکته نوجه کنید
 </b>
 <br>
 
@@ -77,10 +78,11 @@ var persianDate6 = new PersianDateTime(DateTime.Now); // 6
 </div>
 
 ### Example 1:
+
 ```
 var dt1 = new PersianDateTime("1401/02/13").GetDateInformation)();
 
-Output: 
+Output:
 [
   {
     "id": "61-10-02",
@@ -99,7 +101,7 @@ Output:
 ```
 var dt1 = new PersianDateTime("1401/02/15").GetDateInformation)();
 
-Output: 
+Output:
 [
   {
     "id": "1-02-15",
@@ -139,6 +141,7 @@ Output:
   }
 ]
 ```
+
 <div dir="rtl" style="font-family: tahoma;">
 
 ## فاصله دو تاریخ شمسی
@@ -148,24 +151,26 @@ Output:
 ```
 var dt1 = new PersianDateTime("1399/12/29");
 var dt2 = new PersianDateTime("1399/11/29");
-Convert.ToInt32(PersianDateTime.DateDifference(dt1,dt2));
+Convert.ToInt32(dt1.DateDifference(dt2));
 
 Output: 30
 ```
 
 <div dir="rtl" style="font-family: tahoma;">
 
-## ابتدا روز و انتهای روز	
+## ابتدا روز و انتهای روز
 
 </div>
 
 ```
-var dt1 = PersianDateTime.StartOfDay( new PersianDateTime("1399/12/29 23:30:20"));
+var dt1 = new PersianDateTime("1399/12/29 23:30:20");
+var start = dt1.StartOfDay();
 
 Output:
 1399/12/29 00:00:00
 
-var dt1 = PersianDateTime.EndOfDay(new PersianDateTime("1399/12/29 23:30:20"));
+var dt1 = new PersianDateTime("1399/12/29 23:30:20");
+var end = dt1.EndOfDay();
 
 Output:
 1399/12/29 23:59:59
@@ -174,7 +179,7 @@ Output:
 
 <div dir="rtl" style="font-family: tahoma;">
 
-## آخرین روز سال	
+## آخرین روز سال
 
 </div>
 
@@ -221,12 +226,20 @@ PersianDateTime.GetWorkingDays(d1,d2);
 
 Output:
 20
+
+PersianDateTime.GetWorkingDays(d1,d2, true); // با احتساب روزهای پنجشنبه غیر تعطیل
+
+Output:
+23
+
 ```
 
 <div dir="rtl" style="font-family: tahoma;">
 
 ## تعداد روزهای تعطیل پشت سرهم در یک سال
+
 ورودی اول این تابع سال شمسی و ورودی دوم تعداد روز می باشد و خروجی آن یک لیست از تاریخ های پشت سر هم که تعطیل می باشد
+
 </div>
 
 ```
