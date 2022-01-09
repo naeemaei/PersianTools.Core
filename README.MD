@@ -35,7 +35,7 @@ dotnet add package PersianTools.Core
 ##
 
 - [نوع جدید تاریخ شمسی](#نوع-جدید-تاریخ-شمسی)
-- [تبدیل اعداد به حروف](#)
+- [تبدیل اعداد به حروف](#تبدیل-اعداد-به-حروف-و-بالعکس)
 - [لیست شهرها و استان های ایران](#)
 - [اعتبار سنجش کد ملی](#)
 - [اعتبار سنجش شماره کارت بانکی](#)
@@ -247,6 +247,27 @@ var result = PersianDateExtensions.GetContinuousHolidays(year, 3);
 
 Output:
 [Item1: 1400/03/13 - 1400/03/16, Item2: ...]
+
+```
+
+<div dir="rtl" style="font-family: tahoma;">
+
+# تبدیل اعداد به حروف
+
+</div>
+
+<div dir="rtl" style="font-family: tahoma;">
+
+## تبدیل عدد به حروف
+
+</div>
+
+```
+int price = 11200000;
+string faPrice = PersianTools.Core.CharacterUtil.Convert(price).Replace(" ", "");
+
+Output:
+یازده میلیون و دویست هزار
 
 ```
 
