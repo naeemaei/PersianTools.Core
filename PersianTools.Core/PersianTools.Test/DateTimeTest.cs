@@ -140,6 +140,8 @@ namespace PersianTools.Test
             var d1 = new PersianDateTime(1397, 8, 1);
             var d2 = new PersianDateTime(1397, 8, 30);
             Assert.Equal(20, PersianDateExtensions.GetWorkingDays(d1, d2));
+
+            Assert.Equal(23, PersianDateExtensions.GetWorkingDays(d1, d2, true));
         }
         [Fact]
         public void DebuggingMethod()
