@@ -120,6 +120,18 @@ namespace PersianTools.Core
             //CommonConstructor(DateTime);
         }
 
+        public PersianDateTime(PersianDateTime persianDateTime)
+        {
+            Year = persianDateTime.Year;
+            Month = persianDateTime.Month;
+            Day = persianDateTime.Day;
+            Hour = persianDateTime.Hour;
+            Minute = persianDateTime.Minute;
+            Second = persianDateTime.Second;
+            Millisecond = persianDateTime.Millisecond;
+            DateTime = persianCalendar.ToDateTime(Year, Month, Day, Hour, Minute, Second, Millisecond);
+        }
+
         public PersianDateTime(string shamsiDate = "1380/01/01 23:32:56")
         {
 
