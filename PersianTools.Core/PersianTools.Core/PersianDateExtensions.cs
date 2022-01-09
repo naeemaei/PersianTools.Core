@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace PersianTools.Core
 {
@@ -179,11 +178,18 @@ namespace PersianTools.Core
             }
             return persianDateTimes;
         }
-        public static int GetWorkingDays(DateTime d1, DateTime d2)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d1"></param>
+        /// <param name="d2"></param>
+        /// <param name="includeThursdays">روز پنجشنبه جز روزهای تعطیل محسوب شود یا خیر</param>
+        /// <returns></returns>
+        public static int GetWorkingDays(DateTime d1, DateTime d2, bool includeThursdays = false)
         {
-            return GetWorkingDays(new PersianDateTime(d1), new PersianDateTime(d2));
+            return GetWorkingDays(new PersianDateTime(d1), new PersianDateTime(d2), includeThursdays);
         }
-        public static int GetWorkingDays(PersianDateTime startDate, PersianDateTime endDate)
+        public static int GetWorkingDays(PersianDateTime startDate, PersianDateTime endDate, bool includeThursdays = false)
         {
 
             if (startDate > endDate)
@@ -192,14 +198,17 @@ namespace PersianTools.Core
                 startDate = endDate;
                 endDate = tmp;
             }
-            int Result = 0;
-            while (startDate <= endDate)
+            var offset = new PersianDateTime(startDate);
+
+            int result = 0;
+
+            while (offset <= endDate)
             {
-                if (!startDate.IsHoliDay && startDate.DateTime.DayOfWeek != System.DayOfWeek.Thursday)
-                    Result++;
-                startDate++;
+                if (!offset.IsHoliDay && (offset.DateTime.DayOfWeek != System.DayOfWeek.Thursday || includeThursdays))
+                    result++;
+                offset++;
             }
-            return Result;
+            return result;
         }
 
         public static string GetHijriDate(this PersianDateTime persianDate)
