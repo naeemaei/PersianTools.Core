@@ -37,7 +37,7 @@ dotnet add package PersianTools.Core
 - [نوع جدید تاریخ شمسی](#نوع-جدید-تاریخ-شمسی)
 - [تبدیل اعداد به حروف](#تبدیل-اعداد-به-حروف)
 - [لیست شهرها و استان های ایران](#)
-- [اعتبار سنجش کد ملی](#)
+- [اعتبار سنجی کد ملی](#اعتبار-سنجی-کد-ملی)
 - [اعتبار سنجش شماره کارت بانکی](#)
 - [اعتبار سنجش شماره شبا](#)
 - [موقعیت مکانی شماره تلفن، موبایل و کدپستی](#)
@@ -256,7 +256,6 @@ Output:
 
 </div>
 
-
 ```
 int price = 11200000;
 string faPrice = PersianTools.Core.CharacterUtil.Convert(price).Replace(" ", "");
@@ -264,6 +263,20 @@ string faPrice = PersianTools.Core.CharacterUtil.Convert(price).Replace(" ", "")
 Output:
 یازده میلیون و دویست هزار
 
+```
+
+<div dir="rtl" style="font-family: tahoma;">
+
+# اعتبار سنجی کد ملی
+
+</div>
+
+```
+var nationalCode = "0032546580";
+var validate = nationalCode.IsValidNationalCode();
+
+Output:
+True
 ```
 
 <div dir="rtl" style="font-family: tahoma;">
