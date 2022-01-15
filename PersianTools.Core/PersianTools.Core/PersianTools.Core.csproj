@@ -23,8 +23,8 @@
     </Description>
     <LangVersion>9.0</LangVersion>
     <PackageTags>persiantools,dotnetcore,persiandatetime,perisnacity,persiannumber</PackageTags>
-    <Version>2.0.1</Version>
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <Version>2.0.2</Version>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
     <NeutralLanguage>fa</NeutralLanguage>
     <PackageProjectUrl>https://github.com/naeemaei/PersianTools.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
