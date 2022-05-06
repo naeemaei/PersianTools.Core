@@ -93,11 +93,26 @@ namespace PersianTools.Core
                         hijri.HijriAdjustment = -1;
                     else if ((month == 9 && day == 30) || month == 10)
                     {
-                        hijri.HijriAdjustment = 0;
+                        hijri.HijriAdjustment = -1;
                         day = hijri.GetDayOfMonth(datetime);
                         month = hijri.GetMonth(datetime);
 
                     }
+                    break;
+
+                case 1444: /* 1401 */
+                    hijri.HijriAdjustment = -1;
+
+                    if (month == 3 && day == 1)
+                    {
+                        hijri.HijriAdjustment = -2;
+                        day = hijri.GetDayOfMonth(datetime);
+                        month = hijri.GetMonth(datetime);
+                    }
+
+                    else if (month == 3 || month == 9)
+                        hijri.HijriAdjustment = -2;
+
                     break;
 
                 default:
