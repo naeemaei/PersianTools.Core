@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace PersianTools.Core
 {
-    public static class PersianDateExtensions
+    public static partial class PersianDateExtensions
     {
         private readonly static PersianCalendar PersianCalendar = new PersianCalendar();
         private readonly static HijriCalendar hijri = new HijriCalendar { HijriAdjustment = -1 };

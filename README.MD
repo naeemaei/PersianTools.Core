@@ -83,7 +83,7 @@ var persianDate6 = new PersianDateTime(DateTime.Now); // 6
 ### Example 1:
 
 ```
-var dt1 = new PersianDateTime("1401/02/13").GetDateInformation)();
+var dt1 = new PersianDateTime("1401/02/13").GetDateInformation();
 
 Output:
 [
@@ -102,7 +102,7 @@ Output:
 ### Example2
 
 ```
-var dt1 = new PersianDateTime("1401/02/15").GetDateInformation)();
+var dt1 = new PersianDateTime("1401/02/15").GetDateInformation();
 
 Output:
 [
@@ -167,13 +167,13 @@ Output: 30
 
 ```
 var dt1 = new PersianDateTime("1399/12/29 23:30:20");
-var start = dt1.StartOfDay();
+var start = dt1.ShamsiStartDateTimeOfDay();
 
 Output:
 1399/12/29 00:00:00
 
 var dt1 = new PersianDateTime("1399/12/29 23:30:20");
-var end = dt1.EndOfDay();
+var end = dt1.ShamsiEndDateTimeOfDay();
 
 Output:
 1399/12/29 23:59:59
@@ -187,12 +187,12 @@ Output:
 </div>
 
 ```
-var d1 = PersianDateTime.EndOfYearPersianDateTime(1397);
+var d1 = PersianDateTime.ShamsiEndDateTimeOfPersianYear(1397);
 
 Output:
 1397/12/29
 
-var d2 = PersianDateTime.EndOfYearPersianDateTime(1399);
+var d2 = PersianDateTime.ShamsiEndDateTimeOfPersianYear(1399);
 
 Output:
 1399/12/30
@@ -205,12 +205,12 @@ Output:
 </div>
 
 ```
-var d1 = PersianDateTime.EndDateOfMonth(1397);
+var d1 = PersianDateTime.ShamsiEndDateTimeOfMonth(1397, 12);
 
 Output:
 1397/12/29
 
-var d2 = PersianDateTime.EndDateOfMonth(1399);
+var d2 = PersianDateTime.ShamsiEndDateTimeOfMonth(1399, 12);
 
 Output:
 1399/12/30
@@ -225,12 +225,12 @@ Output:
 ```
 var d1 = new PersianDateTime(1397, 8, 1);
 var d2 = new PersianDateTime(1397, 8, 30);
-PersianDateTime.GetWorkingDays(d1,d2);
+PersianDateExtensions.GetWorkingDays(d1,d2);
 
 Output:
 20
 
-PersianDateTime.GetWorkingDays(d1,d2, true); // با احتساب روزهای پنجشنبه غیر تعطیل
+PersianDateExtensions.GetWorkingDays(d1,d2, true); // با احتساب روزهای پنجشنبه غیر تعطیل
 
 Output:
 23
