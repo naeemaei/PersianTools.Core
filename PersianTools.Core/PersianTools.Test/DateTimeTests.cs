@@ -291,8 +291,6 @@ namespace PersianTools.Test
         [InlineData(1400, 3, 16)]
         [InlineData(1400, 4, 30)]
         [InlineData(1400, 5, 7)]
-        [InlineData(1400, 5, 27)]
-        [InlineData(1400, 5, 28)]
         public void Hijri_HolyDays_1399To1400(int year, int month, int day)
         {
             var theDate = new PersianDateTime(year, month, day);
@@ -300,7 +298,9 @@ namespace PersianTools.Test
         }
 
 
-        [Theory]
+        [Theory] // LunarYear 1443, from 19-05-1400 to 08-05-1401
+        [InlineData(1400, 5, 27)]
+        [InlineData(1400, 5, 28)]
         [InlineData(1400, 7, 5)]
         [InlineData(1400, 7, 13)]
         [InlineData(1400, 7, 14)]
@@ -317,6 +317,13 @@ namespace PersianTools.Test
         [InlineData(1401, 3, 6)]
         [InlineData(1401, 4, 19)]
         [InlineData(1401, 4, 27)]
+        public void Hijri_HolyDays_1401To1402_lunarYear1443(int year, int month, int day)
+        {
+            var theDate = new PersianDateTime(year, month, day);
+            Assert.True(CheckHijriHolyday(theDate), CombineDates(theDate));
+        }
+
+        [Theory]// LunarYear 1444, from 08-05-1401 to 27-04-1402
         [InlineData(1401, 5, 16)]
         [InlineData(1401, 5, 17)]
         [InlineData(1401, 6, 26)]
@@ -334,7 +341,31 @@ namespace PersianTools.Test
         [InlineData(1402, 2, 26)]
         [InlineData(1402, 4, 8)]
         [InlineData(1402, 4, 16)]
-        public void Hijri_HolyDays_1400To1401(int year, int month, int day)
+        public void Hijri_HolyDays_1401To1402_lunarYear1444(int year, int month, int day)
+        {
+            var theDate = new PersianDateTime(year, month, day);
+            Assert.True(CheckHijriHolyday(theDate), CombineDates(theDate));
+        }
+
+        [Theory] // LunarYear 1445, from 28-04-1402 to 18-04-1403 
+        [InlineData(1402, 05, 05)]
+        [InlineData(1402, 05, 06)]
+        [InlineData(1402, 06, 15)]
+        [InlineData(1402, 06, 23)]
+        [InlineData(1402, 06, 25)]
+        [InlineData(1402, 07, 02)]
+        [InlineData(1402, 07, 11)]
+        [InlineData(1402, 09, 26)]
+        [InlineData(1402, 11, 05)]
+        [InlineData(1402, 11, 19)]
+        [InlineData(1402, 12, 06)]
+        [InlineData(1403, 01, 13)]
+        [InlineData(1403, 01, 23)]
+        [InlineData(1403, 01, 24)]
+        [InlineData(1403, 02, 16)]
+        [InlineData(1403, 03, 28)]
+        [InlineData(1403, 04, 05)]
+        public void Hijri_HolyDays_1402To1403_lunarYear1445(int year, int month, int day)
         {
             var theDate = new PersianDateTime(year, month, day);
             Assert.True(CheckHijriHolyday(theDate), CombineDates(theDate));
