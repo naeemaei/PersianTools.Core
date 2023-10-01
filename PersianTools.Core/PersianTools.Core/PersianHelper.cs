@@ -17,7 +17,6 @@ namespace PersianTools.Core
         public static Boolean IsValidNationalCode(this String nationalCode)
         {
             //در صورتی که کد ملی وارد شده تهی باشد
-
             if (String.IsNullOrEmpty(nationalCode))
                 throw new ArgumentException("لطفا کد ملی را صحیح وارد نمایید");
 
