@@ -125,8 +125,10 @@ namespace PersianTools.Core
                         month = hijri.GetMonth(datetime);
                     }
                     else if (month == 3 || month == 6 || month == 7 || month == 9 || month == 10)
+                    {
                         hijri.HijriAdjustment = -2;
-                    
+                    }
+
 
                     break;
 
