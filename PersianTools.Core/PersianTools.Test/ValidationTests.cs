@@ -1,4 +1,5 @@
 using PersianTools.Core;
+using System;
 using Xunit;
 
 namespace PersianTools.Test
@@ -23,6 +24,15 @@ namespace PersianTools.Test
         [Theory]
         [InlineData("0032546581")]
         public void When_NationalIdIsFalse_Then_ResultIsFalse(string nationalCode)
+        {
+            var validate = nationalCode.IsValidNationalCode();
+
+            Assert.False(validate);
+        }
+
+        [Theory]
+        [InlineData("1111111111")]
+        public void When_NationalIdIsAllTheSame_Then_ResultIsFalse(string nationalCode)
         {
             var validate = nationalCode.IsValidNationalCode();
 
